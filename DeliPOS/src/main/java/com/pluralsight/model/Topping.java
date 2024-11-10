@@ -1,7 +1,7 @@
 package com.pluralsight.model;
 
 public abstract class Topping extends Product {
-    private int quantity;
+    protected int quantity;
 
     // Constructor
     public Topping(String name, double price, int quantity) {

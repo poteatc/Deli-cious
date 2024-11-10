@@ -9,14 +9,19 @@ public abstract class PremiumTopping extends Topping {
             Size.LARGE, 0.75
     );
 
-    public PremiumTopping(Size size, int quantity) {
-        super(size.toString(), 0.0, quantity); // Calls Topping constructor, using size as name and 0 price initially
+    protected Size toppingSize; // Size for the topping (e.g., small/medium/large)
+    protected Size sandwichSize; // Size for the sandwich (e.g., small/medium/large)
+
+    // Constructor
+    public PremiumTopping(Size toppingSize, Size sandwichSize, int quantity) {
+        super(null, 0.0, quantity); // Call Topping constructor (name, price, quantity)
+        this.toppingSize = toppingSize;
+        this.sandwichSize = sandwichSize;
     }
 
-    // Abstract method to get the base price for the first unit
+    // Abstract methods for getting prices specific to each topping
     protected abstract double getBasePriceBySize();
 
-    // Abstract method to get the upcharge for additional units
     protected abstract double getUpchargeBySize();
 
     @Override
@@ -24,19 +29,20 @@ public abstract class PremiumTopping extends Topping {
         double totalPrice = 0.0;
 
         // Apply base price for the first topping
-        if (getQuantity() > 0) {
+        if (quantity > 0) {
             totalPrice += getBasePriceBySize();
         }
 
         // Apply upcharge for each additional topping beyond the first
-        if (getQuantity() > 1) {
-            totalPrice += (getQuantity() - 1) * getUpchargeBySize();
+        if (quantity > 1) {
+            totalPrice += (quantity - 1) * getUpchargeBySize();
         }
 
-        // Add extra charge based on size (this could be for the whole topping or sandwich)
-        double extraCharge = EXTRA_CHARGES.getOrDefault(Size.SMALL, 0.0);
-        totalPrice += extraCharge * getQuantity();
+        // Add extra charge based on size (applies to the topping, but varies by sandwich size)
+        double extraCharge = EXTRA_CHARGES.getOrDefault(sandwichSize, 0.0);
+        totalPrice += extraCharge * quantity;
 
         return totalPrice;
     }
 }
+
