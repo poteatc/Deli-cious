@@ -1,5 +1,7 @@
 package com.pluralsight.model;
 
+import com.pluralsight.model.enums.BreadType;
+
 public class Bread implements Priceable {
     private BreadType breadType;  // BreadType enum to determine type of bread
     private Size size;  // Size enum (SMALL, MEDIUM, LARGE) to determine the size of the bread

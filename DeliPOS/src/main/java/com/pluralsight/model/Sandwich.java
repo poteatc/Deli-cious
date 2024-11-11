@@ -2,7 +2,8 @@ package com.pluralsight.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.pluralsight.model.*;
+
+import com.pluralsight.model.enums.MeatType;
 
 public class Sandwich implements Priceable {
     private Bread bread;  // Bread object with BreadType and Size

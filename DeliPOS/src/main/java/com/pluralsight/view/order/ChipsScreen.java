@@ -1,21 +1,20 @@
-package com.pluralsight.view;
+package com.pluralsight.view.order;
+
+import com.pluralsight.view.Screen;
 
 import java.util.Scanner;
 
-public class SandwichScreen implements Screen {
+public class ChipsScreen implements Screen {
     @Override
     public void display() {
         System.out.println("""
-                Sandwich Customization:
-                -----------------------
-                1) Select Bread
-                2) Select Size
-                3) Add Meat
-                4) Add Cheese
-                5) Add Other Toppings
-                6) Add Sauces
-                7) Toast Sandwich
-                0) Finish Sandwich
+                Select Chips:
+                ----------------
+                1) Classic
+                2) BBQ
+                3) Salt & Vinegar
+                4) Sour Cream & Onion
+                0) No Chips
                 """);
     }
 
@@ -30,10 +29,10 @@ public class SandwichScreen implements Screen {
                 choice = Integer.parseInt(input);
 
                 switch (choice) {
-                    case 1, 2, 3, 4, 5, 6, 7, 0 -> {
+                    case 1, 2, 3, 4, 0 -> {
                         return choice; // Valid choice, exit loop by returning choice
                     }
-                    default -> System.out.println("Invalid option. Please enter a number from 0 to 7.");
+                    default -> System.out.println("Invalid option. Please enter a number from 0 to 4.");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please enter a valid number.");

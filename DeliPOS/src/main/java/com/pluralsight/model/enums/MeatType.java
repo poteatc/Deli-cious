@@ -1,4 +1,4 @@
-package com.pluralsight.model;
+package com.pluralsight.model.enums;
 
 public enum MeatType {
     STEAK("Steak"),
