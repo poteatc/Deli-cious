@@ -1,14 +1,17 @@
 package com.pluralsight.model;
 
-public enum Size {
-    SMALL("4\""),
-    MEDIUM("8\""),
-    LARGE("12\"");
+public enum MeatType {
+    STEAK("Steak"),
+    HAM("Ham"),
+    SALAMI("Salami"),
+    ROAST_BEEF("Roast Beef"),
+    CHICKEN("Chicken"),
+    BACON("Bacon");
 
     private final String description;
 
     // Constructor to initialize the description
-    Size(String description) {
+    MeatType(String description) {
         this.description = description;
     }
 
@@ -16,5 +19,4 @@ public enum Size {
     public String getDescription() {
         return description;
     }
-
 }

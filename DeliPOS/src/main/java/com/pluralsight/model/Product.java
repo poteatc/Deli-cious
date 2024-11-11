@@ -22,4 +22,6 @@ public abstract class Product implements Priceable {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    protected abstract double getPriceBySize();
 }

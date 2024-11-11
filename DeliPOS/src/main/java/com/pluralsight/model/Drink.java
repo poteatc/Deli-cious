@@ -10,17 +10,11 @@ public class Drink extends Product {
     );
 
     public Drink(Size size, int quantity) {
-        super("Drink", 0.0); // The price will be based on the size
-        // Add custom handling to set the price based on the size
+        super("Drink", DRINK_PRICES.getOrDefault(size, 0.0) * quantity);  // Assuming price is determined by size and quantity
     }
 
     @Override
-    public double getPrice() {
-        return DRINK_PRICES.getOrDefault(getSize(), 0.0);
-    }
-
-    private Size getSize() {
-        // Assume this method fetches the size of the drink, typically stored in the product or drink object
-        return Size.MEDIUM; // Just an example, assuming size is medium
+    protected double getPriceBySize() {
+        return DRINK_PRICES.getOrDefault(DRINK_PRICES, 0.0);
     }
 }
