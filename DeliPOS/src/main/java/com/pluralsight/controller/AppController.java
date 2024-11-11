@@ -1,75 +1,93 @@
 package com.pluralsight.controller;
 
-import com.pluralsight.view.HomeScreen;
-import com.pluralsight.view.OrderScreen;
+import com.pluralsight.view.*;
 
 import java.util.Scanner;
 
 public class AppController {
-    private final Scanner scanner = new Scanner(System.in);
-    private boolean running = true;
+    private final Scanner scanner;
+    private final HomeScreen homeScreen;
+    private final OrderScreen orderScreen;
+    private final SandwichScreen sandwichScreen;
+    private final ChipsScreen chipsScreen;
+    private final DrinkScreen drinkScreen;
+    private final CheckoutScreen checkoutScreen;
 
+    // Constructor to initialize the screens and scanner
+    public AppController() {
+        scanner = new Scanner(System.in);
+        homeScreen = new HomeScreen();
+        orderScreen = new OrderScreen();
+        sandwichScreen = new SandwichScreen();
+        chipsScreen = new ChipsScreen();
+        drinkScreen = new DrinkScreen();
+        checkoutScreen = new CheckoutScreen();
+    }
+
+    // Main method to start the app
     public void start() {
+        boolean running = true;
+
         while (running) {
-            navigateToHomeScreen();
-        }
-        scanner.close(); // Close the scanner when exiting
-    }
+            // Display Home Screen
+            homeScreen.display();
+            int choice = homeScreen.getSelection(scanner);  // Get user's selection
 
-    private void navigateToHomeScreen() {
-        HomeScreen homeScreen = new HomeScreen();
-        homeScreen.display();
-        int selection = homeScreen.getSelection(scanner);
-
-        switch (selection) {
-            case 1 -> navigateToOrderScreen();
-            case 0 -> running = false;
-            default -> System.out.println("Invalid selection, please try again.");
+            switch (choice) {
+                case 1 -> startNewOrder();  // If "New Order", go to order process
+                case 0 -> {
+                    System.out.println("Exiting the application. Goodbye!");
+                    running = false;  // Exit the loop and end the app
+                }
+                default -> System.out.println("Invalid selection. Please choose again.");
+            }
         }
     }
 
-    private void navigateToOrderScreen() {
-        OrderScreen orderScreen = new OrderScreen();
-        orderScreen.display();
-        int selection = orderScreen.getSelection(scanner);
+    private void startNewOrder() {
+        boolean orderInProgress = true;
 
-        switch (selection) {
-            case 1 -> navigateToAddSandwichScreen();
-            case 2 -> navigateToAddDrinkScreen();
-            case 3 -> navigateToAddChipsScreen();
-            case 4 -> navigateToCheckoutScreen();
-            case 0 -> System.out.println("Order canceled, returning to home screen.");
-            default -> System.out.println("Invalid selection, please try again.");
+        while (orderInProgress) {
+            // Display Order Screen
+            orderScreen.display();
+            int choice = orderScreen.getSelection(scanner);
+
+            switch (choice) {
+                case 1 -> addSandwich();  // Add Sandwich to order
+                case 2 -> addDrink();  // Add Drink to order
+                case 3 -> addChips();  // Add Chips to order
+                case 4 -> checkout();  // Proceed to checkout
+                case 0 -> {
+                    System.out.println("Order cancelled.");
+                    orderInProgress = false;  // Cancel the order and return to HomeScreen
+                }
+                default -> System.out.println("Invalid option. Please try again.");
+            }
         }
     }
 
-    private void navigateToAddSandwichScreen() {
-        SandwichScreen sandwichScreen = new SandwichScreen();
-        sandwichScreen.display(scanner);
-        // Process sandwich details here, maybe collect and add to the order
+    private void addSandwich() {
+        // Logic to add a sandwich
+        sandwichScreen.display();
+        sandwichScreen.getSelection(scanner);  // Get the user's sandwich selection
     }
 
-    private void navigateToAddDrinkScreen() {
-        DrinkScreen drinkScreen = new DrinkScreen();
-        drinkScreen.display(scanner);
-        // Process drink details here, maybe collect and add to the order
+    private void addDrink() {
+        // Logic to add a drink
+        drinkScreen.display();
+        drinkScreen.getSelection(scanner);  // Get the user's drink selection
     }
 
-    private void navigateToAddChipsScreen() {
-        ChipsScreen chipsScreen = new ChipsScreen();
-        chipsScreen.display(scanner);
-        // Process chips details here, maybe collect and add to the order
+    private void addChips() {
+        // Logic to add chips
+        chipsScreen.display();
+        chipsScreen.getSelection(scanner);  // Get the user's chips selection
     }
 
-    private void navigateToCheckoutScreen() {
-        CheckoutScreen checkoutScreen = new CheckoutScreen();
+    private void checkout() {
+        // Logic to checkout and display order details
         checkoutScreen.display();
-        int selection = checkoutScreen.getSelection(scanner);
-        if (selection == 1) {
-            // Finalize order
-            System.out.println("Order confirmed and receipt saved.");
-        } else if (selection == 0) {
-            System.out.println("Returning to home screen.");
-        }
+        checkoutScreen.getSelection(scanner);  // Get the user's checkout confirmation or cancellation
     }
 }
+
