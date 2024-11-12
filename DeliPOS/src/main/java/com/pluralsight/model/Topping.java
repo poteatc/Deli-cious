@@ -1,20 +1,14 @@
 package com.pluralsight.model;
 
-public abstract class Topping extends Product {
-    protected int quantity;
+import com.pluralsight.model.enums.Size;
 
-    // Constructor
-    public Topping(String name, double price, int quantity) {
-        super(name, price); // Calls Product's constructor to set name and price
-        this.quantity = quantity;
+public abstract class Topping implements Priceable {
+    protected String name;
+
+    public Topping(String name) {
+        this.name = name;}
+
+    public String getName() {
+        return name;
     }
-
-    // Getter for quantity
-    public int getQuantity() {
-        return quantity;
-    }
-
-    // Abstract method to calculate price (specific to each topping)
-    @Override
-    public abstract double getPrice();
 }

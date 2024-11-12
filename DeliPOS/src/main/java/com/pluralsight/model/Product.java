@@ -10,18 +10,17 @@ public abstract class Product implements Priceable {
         this.price = price;
     }
 
-    // Getters and Setters
+    // Getter for name
     public String getName() {
         return name;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
+    // Setter for price
     public void setPrice(double price) {
         this.price = price;
     }
 
-    protected abstract double getPriceBySize();
+    // This method is abstract because each Product will have a different way to calculate the price
+    @Override
+    public abstract double getPrice();
 }

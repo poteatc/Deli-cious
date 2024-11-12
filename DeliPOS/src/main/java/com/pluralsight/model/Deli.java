@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Deli {
-    private List<Customer> customers;
+    private List<Order> orders;
 
     public Deli() {
-        customers = new ArrayList<>();
+        orders = new ArrayList<>();
     }
 
     // You can add customers to the deli.
-    public void addCustomer(Customer customer) {
-        customers.add(customer);
+    public void addOrder(Order order) {
+        orders.add(order);
     }
 
-    public List<Customer> getCustomers() {
-        return customers;
+    public List<Order> getOrders() {
+        return orders;
     }
 }

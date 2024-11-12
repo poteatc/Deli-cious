@@ -1,16 +1,14 @@
 package com.pluralsight.model.enums;
 
-import com.pluralsight.model.Priceable;
-
-public enum DrinkType {
-    TEA("Tea"),
-    WATER("Water"),
-    COLA("Cola");
+public enum CheeseType {
+    AMERICAN("American Cheese"),
+    PROVOLONE("Provolone Cheese"),
+    CHEDDAR("Cheddar Cheese"),
+    SWISS("Swiss Cheese");
 
     private final String description;
 
-    // Constructor to initialize the description
-    DrinkType(String description) {
+    CheeseType(String description) {
         this.description = description;
     }
 

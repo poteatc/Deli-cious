@@ -1,0 +1,153 @@
+@startuml
+class com.pluralsight.model.RegularTopping {
++ double getPrice()
+}
+
+enum com.pluralsight.model.enums.Size {
++  SMALL
++  MEDIUM
++  LARGE
+- String description
++ String getDescription()
+}
+
+
+enum com.pluralsight.model.enums.RegularToppingType {
++  LETTUCE
++  PEPPERS
++  ONIONS
++  TOMATOES
++  JALEPENOS
++  CUCUMBERS
++  PICKLES
++  GUACAMOLE
++  MUSHROOMS
++  MAYO
++  MUSTARD
++  KETCHUP
++  RANCH
++  THOUSAND_ISLAND
++  VINAIGRETTE
++  AU_JUS
++  SAUCE
+}
+
+abstract class com.pluralsight.model.PremiumTopping {
+# {abstract}double getBasePriceBySize(Size)
+# {abstract}double getBasePriceBySize()
+# {abstract}double getUpchargeBySize()
+}
+
+class com.pluralsight.model.Drink {
+- DrinkSize size
+- DrinkType type
++ double getPrice()
++ String getSizeDescription()
++ String getTypeDescription()
+}
+
+
+enum com.pluralsight.model.DrinkSize {
++  SMALL
++  MEDIUM
++  LARGE
+- String description
+- double basePrice
++ double getPrice()
++ String getDescription()
+}
+
+
+enum com.pluralsight.model.DrinkType {
++  TEA
++  WATER
++  COLA
+- String description
++ String getDescription()
+}
+
+
+class com.pluralsight.model.Deli {
+- List<Order> orders
++ void addOrder(Order)
++ List<Order> getOrders()
+}
+
+
+enum com.pluralsight.model.enums.BreadType {
++  WHITE
++  WHEAT
++  RYE
++  WRAP
+- String description
++ String getDescription()
+}
+
+
+enum com.pluralsight.model.enums.DrinkType {
++  TEA
++  WATER
++  COLA
+- String description
++ String getDescription()
+}
+
+
+enum com.pluralsight.model.enums.CheeseType {
++  AMERICAN
++  PROVOLONE
++  CHEDDAR
++  SWISS
+- String description
++ String getDescription()
+}
+
+
+enum com.pluralsight.model.enums.MeatType {
++  STEAK
++  HAM
++  SALAMI
++  ROAST_BEEF
++  CHICKEN
++  BACON
+- String description
++ String getDescription()
+}
+
+
+class com.pluralsight.model.Order {
+- List<Product> products
++ void addProduct(Product)
++ double getPrice()
++ void removeProduct(Product)
++ List<Product> getProducts()
+}
+
+
+interface com.pluralsight.model.Priceable {
+~ double getPrice()
+}
+
+abstract class com.pluralsight.model.Product {
+- String name
+- double price
++ String getName()
++ void setPrice(double)
++ {abstract}double getPrice()
+}
+
+
+abstract class com.pluralsight.model.Topping {
+# String name
++ String getName()
+}
+
+
+
+
+com.pluralsight.model.Topping <|-- com.pluralsight.model.RegularTopping
+com.pluralsight.model.Topping <|-- com.pluralsight.model.PremiumTopping
+com.pluralsight.model.Priceable <|.. com.pluralsight.model.Order
+com.pluralsight.model.Priceable <|.. com.pluralsight.model.Product
+com.pluralsight.model.Priceable <|.. com.pluralsight.model.Topping
+@enduml

@@ -1,25 +1,21 @@
 package com.pluralsight.view.order;
 
-import com.pluralsight.model.Drink;
 import com.pluralsight.view.Screen;
 
 import java.util.Scanner;
 
-public class DrinkScreen implements Screen {
+public class BreadScreen implements Screen {
     @Override
     public void display() {
-        System.out.print("""
-                Select Drink:
-                ----------------
+        System.out.println("""
+                Bread Type:
+                -----------------------
+                1) Select Bread
+                2) Select Size
+                3) Add Meat
+                4) Add Cheese
+                0) Finish Sandwich
                 """);
-        showOptions();
-    }
-
-    private void showOptions() {
-        for (Drink.DrinkType type : Drink.DrinkType.values()) {
-            System.out.println((type.ordinal() + 1) + ") " + type.getDescription());
-        }
-        System.out.println("0) Return");
     }
 
     public int getSelection(Scanner scanner) {
@@ -33,10 +29,10 @@ public class DrinkScreen implements Screen {
                 choice = Integer.parseInt(input);
 
                 switch (choice) {
-                    case 1, 2, 3, 4, 5, 6, 0 -> {
+                    case 1, 2, 3, 4, 5, 6, 7, 0 -> {
                         return choice; // Valid choice, exit loop by returning choice
                     }
-                    default -> System.out.println("Invalid option. Please enter a number from 0 to 6.");
+                    default -> System.out.println("Invalid option. Please enter a number from 0 to 7.");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please enter a valid number.");

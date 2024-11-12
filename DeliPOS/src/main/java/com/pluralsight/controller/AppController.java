@@ -1,5 +1,6 @@
 package com.pluralsight.controller;
 
+import com.pluralsight.model.Deli;
 import com.pluralsight.view.*;
 import com.pluralsight.view.order.ChipsScreen;
 import com.pluralsight.view.order.DrinkScreen;
@@ -8,6 +9,12 @@ import com.pluralsight.view.order.SandwichScreen;
 import java.util.Scanner;
 
 public class AppController {
+
+    public static void main(String[] args) {
+        AppController program = new AppController();
+        program.start();
+    }
+
     private final Scanner scanner;
     private final HomeScreen homeScreen;
     private final OrderScreen orderScreen;
@@ -15,6 +22,7 @@ public class AppController {
     private final ChipsScreen chipsScreen;
     private final DrinkScreen drinkScreen;
     private final CheckoutScreen checkoutScreen;
+
 
     // Constructor to initialize the screens and scanner
     public AppController() {
@@ -79,6 +87,7 @@ public class AppController {
         // Logic to add a drink
         drinkScreen.display();
         drinkScreen.getSelection(scanner);  // Get the user's drink selection
+
     }
 
     private void addChips() {
