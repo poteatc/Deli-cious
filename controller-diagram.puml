@@ -1,0 +1,27 @@
+@startuml
+class com.pluralsight.controller.SandwichController {
+}
+class com.pluralsight.controller.AppController {
+- Scanner scanner
+- HomeScreen homeScreen
+- OrderScreen orderScreen
+- SandwichScreen sandwichScreen
+- ChipsScreen chipsScreen
+- DrinkScreen drinkScreen
+- CheckoutScreen checkoutScreen
++ {static} void main(String[])
++ void start()
+- void startNewOrder()
+- void addSandwich()
+- void addDrink()
+- void addChips()
+- void checkout()
+}
+
+
+class com.pluralsight.controller.Main {
++ {static} void main(String[])
+- {static} void printProductQuantityAndPrice(Product)
+}
+
+@enduml

@@ -38,4 +38,6 @@ public abstract class Product implements Priceable {
     // This method is abstract because each Product will have a different way to calculate the price
     @Override
     public abstract double getPrice();
+    // Do I need to have this if it already implements Priceable? Will need to check when calculating total price of all products in Order
+
 }

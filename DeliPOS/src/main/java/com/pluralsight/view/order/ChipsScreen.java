@@ -5,6 +5,8 @@ import com.pluralsight.view.Screen;
 import java.util.Scanner;
 
 public class ChipsScreen implements Screen {
+
+    // Want to make all options generalized like this DrinkScreen showOptions() so I only need to add to the Drinks enums to update the menu
     @Override
     public void display() {
         System.out.println("""

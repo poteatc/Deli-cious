@@ -1,14 +1,19 @@
 @startuml
 class com.pluralsight.model.RegularTopping {
-+ double getPrice()
+- RegularToppingType regularToppingType
++ String toString()
 }
 
-enum com.pluralsight.model.enums.Size {
-+  SMALL
-+  MEDIUM
-+  LARGE
-- String description
-+ String getDescription()
+
+class com.pluralsight.model.Meat {
+- MeatType meatType
++ String toString()
+}
+
+
+class com.pluralsight.model.Cheese {
+- CheeseType cheeseType
++ String toString()
 }
 
 
@@ -32,36 +37,39 @@ enum com.pluralsight.model.enums.RegularToppingType {
 +  SAUCE
 }
 
-abstract class com.pluralsight.model.PremiumTopping {
-# {abstract}double getBasePriceBySize(Size)
-# {abstract}double getBasePriceBySize()
-# {abstract}double getUpchargeBySize()
-}
-
 class com.pluralsight.model.Drink {
-- DrinkSize size
-- DrinkType type
+- Size size
+- Type type
++ String getName()
 + double getPrice()
-+ String getSizeDescription()
-+ String getTypeDescription()
++ String getSize()
 }
 
 
-enum com.pluralsight.model.DrinkSize {
+enum com.pluralsight.model.Size {
 +  SMALL
 +  MEDIUM
 +  LARGE
 - String description
-- double basePrice
+- double price
++ String getDescription()
 + double getPrice()
+}
+
+
+enum com.pluralsight.model.Type {
++  TEA
++  WATER
++  COLA
+- String description
 + String getDescription()
 }
 
 
-enum com.pluralsight.model.DrinkType {
-+  TEA
-+  WATER
-+  COLA
+enum com.pluralsight.model.enums.ChipType {
++  DORITOS
++  LAYS
++  SUN_CHIPS
 - String description
 + String getDescription()
 }
@@ -79,15 +87,6 @@ enum com.pluralsight.model.enums.BreadType {
 +  WHEAT
 +  RYE
 +  WRAP
-- String description
-+ String getDescription()
-}
-
-
-enum com.pluralsight.model.enums.DrinkType {
-+  TEA
-+  WATER
-+  COLA
 - String description
 + String getDescription()
 }
@@ -129,25 +128,60 @@ interface com.pluralsight.model.Priceable {
 }
 
 abstract class com.pluralsight.model.Product {
-- String name
-- double price
-+ String getName()
-+ void setPrice(double)
+- int quantity
++ {abstract}String getName()
++ int getQuantity()
 + {abstract}double getPrice()
 }
 
 
-abstract class com.pluralsight.model.Topping {
-# String name
+class com.pluralsight.model.Chip {
+- {static} double CHIP_PRICE
+- ChipType chipType
 + String getName()
++ double getPrice()
+}
+
+
+enum com.pluralsight.model.enums.SandwichSize {
++  SMALL
++  MEDIUM
++  LARGE
+- String description
++ String getDescription()
+}
+
+
+abstract class com.pluralsight.model.Topping {
+- SandwichSize sandwichSize
+- ToppingType toppingType
+- boolean hasExtra
++ double getPrice()
++ boolean withExtra()
++ ToppingType getToppingType()
++ SandwichSize getSandwichSize()
+}
+
+
+enum com.pluralsight.model.ToppingType {
++  MEAT
++  CHEESE
++  REGULAR
+- String description
+- double basePrice
+- double extraPrice
++ String getDescription()
 }
 
 
 
 
 com.pluralsight.model.Topping <|-- com.pluralsight.model.RegularTopping
-com.pluralsight.model.Topping <|-- com.pluralsight.model.PremiumTopping
+com.pluralsight.model.Topping <|-- com.pluralsight.model.Meat
+com.pluralsight.model.Topping <|-- com.pluralsight.model.Cheese
+com.pluralsight.model.Product <|-- com.pluralsight.model.Drink
 com.pluralsight.model.Priceable <|.. com.pluralsight.model.Order
 com.pluralsight.model.Priceable <|.. com.pluralsight.model.Product
+com.pluralsight.model.Product <|-- com.pluralsight.model.Chip
 com.pluralsight.model.Priceable <|.. com.pluralsight.model.Topping
 @enduml

@@ -1,0 +1,51 @@
+@startuml
+class com.pluralsight.view.order.ChipsScreen {
++ void display()
++ int getSelection(Scanner)
+}
+
+class com.pluralsight.view.CheckoutScreen {
++ void display()
++ int getSelection(Scanner)
+}
+
+interface com.pluralsight.view.Screen {
+~ void display()
+}
+
+class com.pluralsight.view.order.SandwichScreen {
++ void display()
++ int getSelection(Scanner)
+}
+
+class com.pluralsight.view.HomeScreen {
++ void display()
++ int getSelection(Scanner)
+}
+
+class com.pluralsight.view.order.DrinkScreen {
++ void display()
+- void showOptions()
++ int getSelection(Scanner)
+}
+
+class com.pluralsight.view.order.BreadScreen {
++ void display()
++ int getSelection(Scanner)
+}
+
+class com.pluralsight.view.OrderScreen {
++ void display()
++ int getSelection(Scanner)
+}
+
+
+
+com.pluralsight.view.Screen <|.. com.pluralsight.view.order.ChipsScreen
+com.pluralsight.view.Screen <|.. com.pluralsight.view.CheckoutScreen
+com.pluralsight.view.Screen <|.. com.pluralsight.view.order.SandwichScreen
+com.pluralsight.view.Screen <|.. com.pluralsight.view.HomeScreen
+com.pluralsight.view.Screen <|.. com.pluralsight.view.order.DrinkScreen
+com.pluralsight.view.Screen <|.. com.pluralsight.view.order.BreadScreen
+com.pluralsight.view.Screen <|.. com.pluralsight.view.OrderScreen
+@enduml
