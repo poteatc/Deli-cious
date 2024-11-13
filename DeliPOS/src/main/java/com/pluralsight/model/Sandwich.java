@@ -49,9 +49,14 @@ public class Sandwich extends Product implements Priceable {
     }
     @Override
     public String getName() {
-        String sandwichDescription = getBreadDescription() + " " + getSizeDescription() + "\n";
+        String breadDescription = getBreadDescription() + " " + getSizeDescription() + ": " + "\n";
+        String toppingsDescription = "";
+        for (Topping t : toppings) {
+            toppingsDescription += t + "\n";
+        }
         //sandwichDescription += meats + "\n" + cheeses + "\n" + regularToppings + "\n";
-        return sandwichDescription;
+        return breadDescription + toppingsDescription
+                ;
     }
 
     @Override

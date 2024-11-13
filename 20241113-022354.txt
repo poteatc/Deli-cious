@@ -1,0 +1,2 @@
+Order{products=[com.pluralsight.model.Sandwich@5a2e4553, com.pluralsight.model.Drink@28c97a5], localDateTime=2024-11-13T14:23:54.047852300} : Total Price: $10.55
+
