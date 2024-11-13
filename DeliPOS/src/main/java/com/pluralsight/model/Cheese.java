@@ -14,9 +14,8 @@ public class Cheese extends Topping {
 
     @Override
     public String toString() {
-        String s = getSandwichSize().getDescription() + " " + cheeseType.getDescription()
-                + " " + getToppingType().getDescription();
+        String s = cheeseType.getDescription() + " " + getToppingType().getDescription();
         s += withExtra() ? " with extra" : "";
-        return String.format("%s costs: $%.2f", s, getPrice());
+        return String.format(" + %s costs: $%.2f", s, getPrice());
     }
 }

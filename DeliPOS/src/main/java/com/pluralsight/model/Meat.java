@@ -13,9 +13,8 @@ public class Meat extends Topping {
 
     @Override
     public String toString() {
-        String s = getSandwichSize().getDescription() + " " + meatType.getDescription()
-                + " " + getToppingType().getDescription();
+        String s = meatType.getDescription() + " " + getToppingType().getDescription();
         s += withExtra() ? " with extra" : "";
-        return String.format("%s costs: $%.2f", s, getPrice());
+        return String.format("+ %s costs: $%.2f", s, getPrice());
     }
 }

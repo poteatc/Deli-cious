@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Order implements Priceable {
     private List<Product> products;
+    private String id;
 
     // Constructor initializes the products list
     public Order() {

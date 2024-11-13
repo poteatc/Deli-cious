@@ -1,49 +1,48 @@
-//package com.pluralsight.model;
-//
-//import com.pluralsight.model.enums.BreadType;
-//import com.pluralsight.model.enums.Size;
-//
-//public class Bread implements Priceable {
-//    private BreadType breadType;  // BreadType enum to determine type of bread
-//
-//    // Constructor
-//    public Bread(BreadType breadType, Size size) {
-//        this.breadType = breadType;
-//    }
-//
-//    // Getter for BreadType
-//    public BreadType getBreadType() {
-//        return breadType;
-//    }
-//
-//    // Setter for BreadType
-//    public void setBreadType(BreadType breadType) {
-//        this.breadType = breadType;
-//    }
-//
-//    // Getter for Size
-//    public Size getSize() {
-//        return size;
-//    }
-//
-//    // Setter for Size
-//    public void setSize(Size size) {
-//        this.size = size;
-//    }
-//
-//    // Priceable interface method to get price based on bread size
-//    @Override
-//    public double getPrice() {
-//        // Different bread sizes have different prices (small, medium, large)
-//        switch (size) {
-//            case SMALL:
-//                return 2.00; // price for SMALL bread
-//            case MEDIUM:
-//                return 3.00; // price for MEDIUM bread
-//            case LARGE:
-//                return 4.00; // price for LARGE bread
-//            default:
-//                return 0.0;  // Default if size is not defined
-//        }
-//    }
-//}
+package com.pluralsight.model;
+
+import com.pluralsight.model.enums.BreadType;
+import com.pluralsight.model.enums.SandwichSize;
+
+public class Bread implements Priceable {
+    private BreadType breadType;  // BreadType enum to determine type of bread
+    private SandwichSize sandwichSize;
+
+    // Constructor
+    public Bread(BreadType breadType, SandwichSize sandwichSize) {
+        this.breadType = breadType;
+        this.sandwichSize = sandwichSize;
+    }
+
+    // Getter for BreadType
+    public BreadType getBreadType() {
+        return breadType;
+    }
+
+    // Setter for BreadType
+    public void setBreadType(BreadType breadType) {
+        this.breadType = breadType;
+    }
+
+    // Getter for Size
+    public SandwichSize getSize() {
+        return sandwichSize;
+    }
+
+    // Setter for Size
+    public void setSize(SandwichSize size) {
+        this.sandwichSize = size;
+    }
+
+    // Priceable interface method to get price based on bread size
+    @Override
+    public double getPrice() {
+        double price = 0.0;
+        // Different bread sizes have different prices (small, medium, large)
+        switch (sandwichSize) {
+            case SMALL -> price = 5.50; // price for SMALL bread
+            case MEDIUM -> price = 7.00; // price for MEDIUM bread
+            case LARGE -> price =  8.50; // price for LARGE bread
+         }
+         return price;
+    }
+}

@@ -35,6 +35,14 @@ public abstract class Topping implements Priceable {
 
     @Override
     public double getPrice() {
+        // price of small sandwich with meat and cheese no extra for either
+        // 7.25 = 5.50 + (1 * 1.00 + 1 * .75) + 0 * (1.00 + .60)
+        // 5.50 + 1 * (1.00 + .75)
+        // small = 1;
+        // total price = base price of Small sandwich + (small meat + small cheese)
+        // Medium = 2;
+        // 14 = 7.00 + 2 * (2.00 + 1.50)
+
         double price = 0.0;
         int sizeMultiplier = 1;
 

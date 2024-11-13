@@ -1,8 +1,13 @@
 package com.pluralsight.view;
 
+import com.pluralsight.model.Order;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class CheckoutScreen implements Screen {
+    List<Order> orders = new ArrayList<>();
     @Override
     public void display() {
         System.out.println("""
