@@ -1,7 +1,9 @@
 package com.pluralsight.controller;
 
+import com.pluralsight.model.Chip;
 import com.pluralsight.model.Deli;
 import com.pluralsight.model.Drink;
+import com.pluralsight.model.enums.ChipType;
 import com.pluralsight.view.*;
 import com.pluralsight.view.order.ChipsScreen;
 import com.pluralsight.view.order.DrinkScreen;
@@ -94,7 +96,11 @@ public class AppController {
     private void addChips() {
         // Logic to add chips
         chipsScreen.display();
-        chipsScreen.getSelection(scanner);  // Get the user's chips selection
+        ChipType chipType = chipsScreen.getSelection(scanner);  // Get the user's chips selection
+        if (chipType != null) {
+            Chip chip = new Chip(chipType, 1);
+            System.out.println(chip.getName() + " : $" + chip.getPrice());
+        }
     }
 
     private void checkout() {
