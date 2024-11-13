@@ -1,17 +1,19 @@
 package com.pluralsight.model;
 
 import com.pluralsight.model.enums.RegularToppingType;
+import com.pluralsight.model.enums.SandwichSize;
 
 public class RegularTopping extends Topping {
 
-    // Constructor for RegularTopping
-    public RegularTopping(RegularToppingType type, int quantity) {
-        super(type.name());
+    private RegularToppingType regularToppingType;
+
+    public RegularTopping(SandwichSize sandwichSize, RegularToppingType regularToppingType, boolean hasExtra) {
+        super(sandwichSize, ToppingType.REGULAR, hasExtra);
+        this.regularToppingType = regularToppingType;
     }
 
     @Override
-    public double getPrice() {
-        // Regular toppings have no extra cost
-        return 0;
+    public String toString() {
+        return regularToppingType.name() + " " + getToppingType().getDescription();
     }
 }
