@@ -37,11 +37,11 @@
 //        // Different bread sizes have different prices (small, medium, large)
 //        switch (size) {
 //            case SMALL:
-//                return 2.00; // Example price for SMALL bread
+//                return 2.00; // price for SMALL bread
 //            case MEDIUM:
-//                return 3.00; // Example price for MEDIUM bread
+//                return 3.00; // price for MEDIUM bread
 //            case LARGE:
-//                return 4.00; // Example price for LARGE bread
+//                return 4.00; // price for LARGE bread
 //            default:
 //                return 0.0;  // Default if size is not defined
 //        }

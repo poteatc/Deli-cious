@@ -1,14 +1,14 @@
 package com.pluralsight.model.enums;
 
-public enum Size {
-    SMALL("4\""),
-    MEDIUM("8\""),
-    LARGE("12\"");
+public enum ChipType {
+    DORITOS("Doritos"),
+    LAYS("Lays"),
+    SUN_CHIPS("Sun Chips");
 
     private final String description;
 
     // Constructor to initialize the description
-    Size(String description) {
+    ChipType(String description) {
         this.description = description;
     }
 
@@ -16,5 +16,4 @@ public enum Size {
     public String getDescription() {
         return description;
     }
-
 }

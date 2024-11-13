@@ -1,6 +1,6 @@
 package com.pluralsight.model;
 
-import com.pluralsight.model.enums.Size;
+import com.pluralsight.model.enums.SandwichSize;
 
 
 public abstract class PremiumTopping extends Topping {
@@ -10,7 +10,7 @@ public abstract class PremiumTopping extends Topping {
     }
 
     // Abstract methods for getting prices specific to each topping
-    protected abstract double getBasePriceBySize(Size sandwichSize);
+    protected abstract double getBasePriceBySize(SandwichSize sandwichSize);
 
     protected abstract double getBasePriceBySize();
 
