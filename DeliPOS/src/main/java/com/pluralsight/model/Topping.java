@@ -68,4 +68,8 @@ public abstract class Topping implements Priceable {
     public ToppingType getToppingType() {
         return toppingType;
     }
+
+    public SandwichSize getSandwichSize() {
+        return sandwichSize;
+    }
 }

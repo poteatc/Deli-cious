@@ -1,9 +1,7 @@
 package com.pluralsight.controller;
 
 import com.pluralsight.model.*;
-import com.pluralsight.model.enums.ChipType;
-import com.pluralsight.model.enums.RegularToppingType;
-import com.pluralsight.model.enums.SandwichSize;
+import com.pluralsight.model.enums.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,6 +21,17 @@ public class Main {
         Topping t1 = new RegularTopping(SandwichSize.MEDIUM, RegularToppingType.GUACAMOLE, false);
         System.out.printf("%s cost(s): %.2f\n", t1, t1.getPrice());
 
+        Topping smallMeat = new Meat(SandwichSize.SMALL, MeatType.ROAST_BEEF, false);
+        System.out.println(smallMeat);
+
+        Topping mediumMeatWithExtra = new Meat(SandwichSize.MEDIUM, MeatType.BACON, true);
+        System.out.println(mediumMeatWithExtra);
+
+        Topping largeCheese = new Cheese(SandwichSize.LARGE, CheeseType.CHEDDAR, false);
+        System.out.println(largeCheese);
+
+        Topping smallCheeseWithExtra = new Cheese(SandwichSize.SMALL, CheeseType.PROVOLONE, true);
+        System.out.println(smallCheeseWithExtra);
     }
 
     private static void printProductQuantityAndPrice(Product p) {
