@@ -21,7 +21,6 @@ class com.pluralsight.controller.AppController {
 
 class com.pluralsight.controller.Main {
 + {static} void main(String[])
-- {static} void printProductQuantityAndPrice(Product)
 }
 
 @enduml

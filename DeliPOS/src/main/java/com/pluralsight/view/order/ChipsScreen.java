@@ -1,5 +1,7 @@
 package com.pluralsight.view.order;
 
+import com.pluralsight.model.Drink;
+import com.pluralsight.model.enums.ChipType;
 import com.pluralsight.view.Screen;
 
 import java.util.Scanner;
@@ -9,18 +11,21 @@ public class ChipsScreen implements Screen {
     // Want to make all options generalized like this DrinkScreen showOptions() so I only need to add to the Drinks enums to update the menu
     @Override
     public void display() {
-        System.out.println("""
+        System.out.print("""
                 Select Chips:
                 ----------------
-                1) Classic
-                2) BBQ
-                3) Salt & Vinegar
-                4) Sour Cream & Onion
-                0) No Chips
                 """);
+        showOptions();
     }
 
-    public int getSelection(Scanner scanner) {
+    private void showOptions() {
+        for (ChipType type : ChipType.values()) {
+            System.out.println((type.ordinal() + 1) + ") " + type.getDescription());
+        }
+        System.out.println("0) Return");
+    }
+
+    public ChipType getSelection(Scanner scanner) {
         int choice = -1;
 
         while (true) {
@@ -29,16 +34,27 @@ public class ChipsScreen implements Screen {
 
             try {
                 choice = Integer.parseInt(input);
-
-                switch (choice) {
-                    case 1, 2, 3, 4, 0 -> {
-                        return choice; // Valid choice, exit loop by returning choice
+                ChipType selectedChip = ChipType.fromChoice(choice);
+                if (selectedChip != null) {
+                    switch (selectedChip) {
+                        case DORITOS, LAYS, SUN_CHIPS -> {
+                            return selectedChip; // Valid choice, exit loop by returning choice
+                        }
+                        default -> {
+                            System.out.println("Invalid option. Please enter a number from 0 to 3.");
+                            return null;
+                        }
                     }
-                    default -> System.out.println("Invalid option. Please enter a number from 0 to 4.");
+                } else {
+                    System.out.println("Invalid option. Returning to Order Screen...");
+                    return null;
                 }
-            } catch (NumberFormatException e) {
+            } catch (Exception e) {
+                e.printStackTrace();
                 System.out.println("Invalid input. Please enter a valid number.");
             }
+
         }
+
     }
 }

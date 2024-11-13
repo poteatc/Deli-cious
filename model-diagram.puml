@@ -5,6 +5,30 @@ class com.pluralsight.model.RegularTopping {
 }
 
 
+class com.pluralsight.model.Sandwich {
+- Bread bread
+- List<Topping> toppings
+- SandwichSize sandwichSize
++ void addTopping(Topping)
++ void removeTopping(Topping)
++ String getCheeses()
++ String getMeats()
++ String getRegularToppings()
++ String getName()
++ double getPrice()
++ String getBreadDescription()
++ String getSizeDescription()
+}
+
+
+class com.pluralsight.model.Receipt {
+- List<Order> orders
+- LocalDateTime localDateTime
++ void addOrder(Order)
++ void printToReceiptFile()
+}
+
+
 class com.pluralsight.model.Meat {
 - MeatType meatType
 + String toString()
@@ -87,8 +111,20 @@ enum com.pluralsight.model.enums.BreadType {
 +  WHEAT
 +  RYE
 +  WRAP
++  TORTILLA
 - String description
 + String getDescription()
+}
+
+
+class com.pluralsight.model.Bread {
+- BreadType breadType
+- SandwichSize sandwichSize
++ BreadType getBreadType()
++ void setBreadType(BreadType)
++ SandwichSize getSize()
++ void setSize(SandwichSize)
++ double getPrice()
 }
 
 
@@ -116,10 +152,12 @@ enum com.pluralsight.model.enums.MeatType {
 
 class com.pluralsight.model.Order {
 - List<Product> products
+- LocalDateTime localDateTime
 + void addProduct(Product)
 + double getPrice()
 + void removeProduct(Product)
 + List<Product> getProducts()
++ String toString()
 }
 
 
@@ -177,9 +215,12 @@ enum com.pluralsight.model.ToppingType {
 
 
 com.pluralsight.model.Topping <|-- com.pluralsight.model.RegularTopping
+com.pluralsight.model.Priceable <|.. com.pluralsight.model.Sandwich
+com.pluralsight.model.Product <|-- com.pluralsight.model.Sandwich
 com.pluralsight.model.Topping <|-- com.pluralsight.model.Meat
 com.pluralsight.model.Topping <|-- com.pluralsight.model.Cheese
 com.pluralsight.model.Product <|-- com.pluralsight.model.Drink
+com.pluralsight.model.Priceable <|.. com.pluralsight.model.Bread
 com.pluralsight.model.Priceable <|.. com.pluralsight.model.Order
 com.pluralsight.model.Priceable <|.. com.pluralsight.model.Product
 com.pluralsight.model.Product <|-- com.pluralsight.model.Chip
