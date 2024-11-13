@@ -53,7 +53,8 @@ public class Drink extends Product {
 
     @Override
     public String getName() {
-        return type.getDescription();
+        return String.format("+ %s %s %s: $%.2f", getQuantity(), getSize(), type.getDescription(), getPrice());
+        //return "+ " + getQuantity() + " " + getSize() + " " + type.getDescription() +;
     }
 
     @Override

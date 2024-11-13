@@ -37,7 +37,7 @@ public abstract class Product implements Priceable {
 //        return name;
 //    }
     // Does everything Priceable have a name too?
-   // public abstract String getName();
+    public abstract String getName();
 
     public int getQuantity() {
         return quantity;
@@ -65,7 +65,7 @@ public abstract class Product implements Priceable {
 
     // This method is abstract because each Product will have a different way to calculate the price
     @Override
-    public double getPrice();
+    public abstract double getPrice();
     // Do I need to have this if it already implements Priceable? Will need to check when calculating total price of all products in Order
 
 }
