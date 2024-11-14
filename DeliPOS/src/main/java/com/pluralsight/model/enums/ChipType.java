@@ -18,13 +18,13 @@ public enum ChipType {
         return description;
     }
 
-    // Method to get Day enum from an integer code
+    // Method to get ChipType enum from an integer code
     public static ChipType fromChoice(int choice) {
         for (ChipType chipType : ChipType.values()) {
             if (chipType.ordinal() + 1 == choice) {
                 return chipType;
             }
         }
-        return null; // Return null if the code does not match any Day
+        return null; // Return null if the code does not match any ChipType
     }
 }

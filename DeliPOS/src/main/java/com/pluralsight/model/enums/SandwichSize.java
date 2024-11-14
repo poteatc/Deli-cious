@@ -17,4 +17,14 @@ public enum SandwichSize {
         return description;
     }
 
+    // Method to get SandwichSize enum from an integer code
+    public static SandwichSize fromChoice(int choice) {
+        for (SandwichSize sandwichSize : SandwichSize.values()) {
+            if (sandwichSize.ordinal() + 1 == choice) {
+                return sandwichSize;
+            }
+        }
+        return null; // Return null if the code does not match any ChipType
+    }
+
 }

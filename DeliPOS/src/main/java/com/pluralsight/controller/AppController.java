@@ -3,7 +3,10 @@ package com.pluralsight.controller;
 import com.pluralsight.model.Chip;
 import com.pluralsight.model.Deli;
 import com.pluralsight.model.Drink;
+import com.pluralsight.model.enums.BreadType;
 import com.pluralsight.model.enums.ChipType;
+import com.pluralsight.model.enums.MeatType;
+import com.pluralsight.model.enums.SandwichSize;
 import com.pluralsight.view.*;
 import com.pluralsight.view.order.ChipsScreen;
 import com.pluralsight.view.order.DrinkScreen;
@@ -83,7 +86,20 @@ public class AppController {
     private void addSandwich() {
         // Logic to add a sandwich
         sandwichScreen.display();
-        sandwichScreen.getSelection(scanner);  // Get the user's sandwich selection
+        BreadType breadType = sandwichScreen.selectBreadType(scanner);
+        System.out.println("You selected: " + breadType.getDescription());
+        //sandwichScreen.display();
+        SandwichSize sandwichSize = sandwichScreen.selectSandwichSize(scanner);
+        if (sandwichSize != null) {
+            System.out.println("You selected: " + sandwichSize.getDescription());
+        }
+        MeatType meatType = sandwichScreen.selectMeatType(scanner);
+        if (meatType != null) {
+            System.out.println("You selected: " + meatType.getDescription());
+        }
+
+
+        //sandwichScreen.getSelection(scanner);  // Get the user's sandwich selection
     }
 
     private void addDrink() {

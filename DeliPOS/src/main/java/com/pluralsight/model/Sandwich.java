@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.pluralsight.model.enums.BreadType;
 import com.pluralsight.model.enums.SandwichSize;
 
 public class Sandwich extends Product implements Priceable {
@@ -19,6 +20,25 @@ public class Sandwich extends Product implements Priceable {
         this.toppings = new ArrayList<>();
     }
 
+    public Sandwich() {
+        super(1);
+        this.bread = new Bread();
+        this.sandwichSize = bread.getSize();
+        this.toppings = new ArrayList<>();
+    }
+
+    public void setBreadType(BreadType breadType) {
+        this.bread.setBreadType(breadType);
+    }
+
+    public void addBread(Bread bread) {
+        this.bread = bread;
+    }
+
+    public void setSandwichSize(SandwichSize sandwichSize) {
+        this.sandwichSize = sandwichSize;
+        this.bread.setSize(sandwichSize);
+    }
     // Method to add toppings to the sandwich
     public void addTopping(Topping topping) {
         toppings.add(topping);

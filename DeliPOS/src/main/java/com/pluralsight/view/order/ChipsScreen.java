@@ -34,26 +34,24 @@ public class ChipsScreen implements Screen {
 
             try {
                 choice = Integer.parseInt(input);
+                if (choice == 0) {
+                    System.out.println("Returning to Order Screen...");
+                    return null;
+                }
                 ChipType selectedChip = ChipType.fromChoice(choice);
                 if (selectedChip != null) {
                     switch (selectedChip) {
                         case DORITOS, LAYS, SUN_CHIPS -> {
                             return selectedChip; // Valid choice, exit loop by returning choice
                         }
-                        default -> {
-                            System.out.println("Invalid option. Please enter a number from 0 to 3.");
-                            return null;
-                        }
                     }
-                } else {
-                    System.out.println("Invalid option. Returning to Order Screen...");
-                    return null;
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
-                System.out.println("Invalid input. Please enter a valid number.");
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input!!! Please enter a valid number.");
             }
-
+            System.out.println("Invalid option!!! Please enter a number from 0 to 3.");
+            System.out.println("Returning to Order Screen...");
+            return null;
         }
 
     }

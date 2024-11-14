@@ -18,4 +18,14 @@ public enum BreadType {
     public String getDescription() {
         return description;
     }
+
+    // Method to get BreadType enum from an integer code
+    public static BreadType fromChoice(int choice) {
+        for (BreadType breadType : BreadType.values()) {
+            if (breadType.ordinal() + 1 == choice) {
+                return breadType;
+            }
+        }
+        return null; // Return null if the code does not match any ChipType
+    }
 }

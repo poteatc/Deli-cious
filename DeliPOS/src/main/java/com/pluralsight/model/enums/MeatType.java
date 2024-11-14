@@ -20,5 +20,13 @@ public enum MeatType {
         return description;
     }
 
-
+    // Method to get MeatTYpe enum from an integer code
+    public static MeatType fromChoice(int choice) {
+        for (MeatType meatType : MeatType.values()) {
+            if (meatType.ordinal() + 1 == choice) {
+                return meatType;
+            }
+        }
+        return null; // Return null if the code does not match any ChipType
+    }
 }

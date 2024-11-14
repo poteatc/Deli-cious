@@ -3,12 +3,6 @@ package com.pluralsight.controller;
 import com.pluralsight.model.*;
 import com.pluralsight.model.enums.*;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-
 public class Main {
     public static void main(String[] args) {
         // Should chips have a quantity? Or get quantity from list of Chips in Order
