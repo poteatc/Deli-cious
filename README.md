@@ -96,11 +96,44 @@ For example, the `OrderController` (not fully shown here) could manage the entir
 
 - **OrderScreen**: Displays after selecting "New Order." The user can add products to their order or proceed to checkout. This screen lets users manage what is currently in their order.
 
+![image](https://github.com/user-attachments/assets/54db89ca-4487-423d-83d8-c0121ef0d9ee)
+
+
 - **SandwichScreen**: Used when adding a sandwich to the order. The user is guided through customizing the sandwich, selecting options for bread, size, toppings, and toasting preference.
 
 - **ToppingScreen**: Activated when the user needs to choose toppings for a sandwich. The user can select meats, cheeses, and other toppings.
 
+![image](https://github.com/user-attachments/assets/c283983a-f2ea-4a85-8f4b-1f915beeb618)
+
+
 - **CheckoutScreen**: When the user is ready to finalize their purchase, they proceed to this screen. It allows users to review their order, enter payment details, and finalize the transaction.
+
+
+
+### UML Diagram 
+- **Model**
+
+![image](https://github.com/user-attachments/assets/74fecc03-b4e8-4673-97a1-053fe7f873dc)
+
+- **View**
+
+![image](https://github.com/user-attachments/assets/adf212b8-d8f8-4868-aa60-21675fe814ef)
+
+- **Controller**
+
+![image](https://github.com/user-attachments/assets/94a69b8b-641b-40f3-a789-e5a88b007d4f)
+
+
+### Interesting Code - Using Streams in Java
+![image](https://github.com/user-attachments/assets/9dffe80b-9f8b-4111-9c2b-c164059a00c6)
+1. Using Java Streams to Filter Lists of Custom Data Types Using Enums
+In the project, Java Streams are used to filter lists of custom data types such as Order, Sandwich, and Topping. For example, we filter orders based on specific ToppingType enums:
+- This simplifies checking properties of objects and makes the code more readable and concise.
+2. Using Method References and `mapToDouble` to Calculate the Sum of a List
+Streams are also used to calculate the sum of a list, such as calculating the total price of an order:
+Here, mapToDouble transforms the Topping objects of subtype Meat into double values (total prices), and sum() calculates the total.
+- The use of method references (Topping::getPrice) makes the code cleaner and more readable.
+
 
 ### Conclusion
 
