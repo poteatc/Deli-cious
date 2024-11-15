@@ -27,7 +27,7 @@ public class DrinkScreen implements Screen {
                 System.out.println((type.ordinal()) + ") " + type.getDescription());
             }
         }
-        System.out.println("0) Return");
+        System.out.println("0) None");
     }
 
 
@@ -41,7 +41,7 @@ public class DrinkScreen implements Screen {
                 System.out.println((size.ordinal()) + ") " + size.getDescription());
             }
         }
-        System.out.println("0) Return");
+        System.out.println("0) None");
     }
 
     public DrinkType getDrinkTypeSelection(Scanner scanner) {
@@ -103,7 +103,7 @@ public class DrinkScreen implements Screen {
     }
 
     public boolean returnToOrderScreen(Scanner scanner) {
-        System.out.println("Would you like to return to Order Screen? Enter 'y' for yes");
+        System.out.println("Would you like to return to Order Menu? Enter 'y' for yes");
         String choice = scanner.nextLine().trim().toLowerCase();
         if (choice.equalsIgnoreCase("y")) {
             return true;

@@ -23,7 +23,7 @@ public class ChipsScreen implements Screen {
                 System.out.println((type.ordinal()) + ") " + type.getDescription());
             }
         }
-        System.out.println("0) Return");
+        System.out.println("0) None");
     }
 
     public ChipType getSelection(Scanner scanner) {
@@ -45,7 +45,7 @@ public class ChipsScreen implements Screen {
                 switch (selectedChip) {
                     case NONE, DORITOS, LAYS, SUN_CHIPS -> {
                         System.out.println(selectedChip.getDescription() + " selected.");
-                        System.out.println("Returning to Order Screen...");
+                        System.out.println("Returning to Order Menu...");
                         selectingChips = false;
                         return selectedChip; // Valid choice, exit loop by returning choice
                     }

@@ -70,7 +70,8 @@ public class AppController {
                 case 1 -> addSandwich();  // Add Sandwich to order
                 case 2 -> addDrink();  // Add Drink to order
                 case 3 -> addChips();  // Add Chips to order
-                case 4 -> checkout();  // Proceed to checkout
+                case 4 -> viewOrder();
+                case 5 -> checkout();  // Proceed to checkout
                 case 0 -> {
                     System.out.println("Order cancelled.");
                     orderInProgress = false;  // Cancel the order and return to HomeScreen
@@ -115,7 +116,7 @@ public class AppController {
             }
             DrinkSize drinkSize = drinkScreen.getDrinkSizeSelection(scanner);
             if (drinkSize == DrinkSize.NONE) {
-                System.out.println("Must select a size");
+                System.out.println("Must select a size...");
                 addingDrink = !drinkScreen.returnToOrderScreen(scanner);
                 continue;
             }
@@ -133,6 +134,9 @@ public class AppController {
             Chip chip = new Chip(chipType, 1);
             System.out.println(chip.getName() + " : $" + chip.getPrice());
         }
+    }
+
+    private void viewOrder() {
     }
 
     private void checkout() {

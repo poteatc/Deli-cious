@@ -21,7 +21,7 @@ public enum ChipType {
     // Method to get ChipType enum from an integer code
     public static ChipType fromChoice(int choice) {
         for (ChipType chipType : ChipType.values()) {
-            if (chipType.ordinal() + 1 == choice) {
+            if (chipType.ordinal() == choice) {
                 return chipType;
             }
         }
