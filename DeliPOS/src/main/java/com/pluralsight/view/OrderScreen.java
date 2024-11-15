@@ -16,8 +16,9 @@ public class OrderScreen implements Screen {
                 1) Add Sandwich
                 2) Add Drink
                 3) Add Chips
-                4) View Order
-                5) Confirm Order
+                4) Remove Item
+                5) View Order
+                6) Confirm Order
                 0) Cancel Order
                """);
     }
@@ -32,10 +33,10 @@ public class OrderScreen implements Screen {
                 int choice = Integer.parseInt(input);  // Try to parse input as an integer
 
                 switch (choice) {
-                    case 1, 2, 3, 4, 5, 0 -> {
+                    case 1, 2, 3, 4, 5, 6, 0 -> {
                         return choice;  // Valid choice, exit loop by returning the selected choice
                     }
-                    default -> System.out.println("\nInvalid option. Please enter a number from 0 to 5.\n");
+                    default -> System.out.println("\nInvalid option. Please enter a number from 0 to 6.\n");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("\nInvalid input. Please enter a valid number.\n");

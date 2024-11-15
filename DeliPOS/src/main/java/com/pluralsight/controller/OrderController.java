@@ -47,8 +47,9 @@ public class OrderController {
                 case 1 -> addSandwich(order); // Add a sandwich to the order
                 case 2 -> addDrink(order);    // Add a drink to the order
                 case 3 -> addChips(order);    // Add chips to the order
-                case 4 -> viewOrder(order);   // View the current order
-                case 5 -> {
+                case 4 -> removeItem(order);
+                case 5 -> viewOrder(order);   // View the current order
+                case 6 -> {
                     confirmOrder(order);      // Confirm the order and add it to the list of orders
                     orderInProgress = false;
                 }
@@ -57,6 +58,28 @@ public class OrderController {
                     orderInProgress = false; // Cancel the order
                 }
                 default -> System.out.println("\nInvalid option. Please try again."); // Handle invalid input
+            }
+        }
+    }
+
+    private void removeItem(Order order) {
+        if (order.getProducts().isEmpty()) {
+            System.out.println("\nNothing to remove from empty order..\n");
+        } else {
+            viewOrder(order);
+            System.out.print("Select an item # to remove: ");
+
+            String input = scanner.nextLine().trim();
+            try {
+                int choice = Integer.parseInt(input); // Validate input as an integer
+                if (choice > 0 && choice <= order.getProducts().size()) {
+                    System.out.println("\nItem #" + choice + " successfully removed.\n");
+                    order.getProducts().remove(choice - 1);
+                } else {
+                    System.out.println("\nInvalid Order #...");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("\nInvalid input. Please enter a number...\n");
             }
         }
     }
