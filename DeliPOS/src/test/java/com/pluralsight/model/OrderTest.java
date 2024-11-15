@@ -9,7 +9,7 @@ class OrderTest {
 
     @Test
     void get_total_order_price_of_small_sandwich_with_two_premium_toppings_and_one_large_drink() {
-        Drink drink = new Drink(1, Drink.Size.LARGE, Drink.Type.TEA);
+        Drink drink = new Drink(1, DrinkSize.LARGE, DrinkType.TEA);
 
         System.out.printf("%d %s %s(s) cost(s): %.2f\n", drink.getQuantity(), drink.getSize(), drink.getName(), drink.getPrice());
 

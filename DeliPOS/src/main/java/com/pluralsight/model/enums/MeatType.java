@@ -27,6 +27,6 @@ public enum MeatType {
                 return meatType;
             }
         }
-        return null; // Return null if the code does not match any ChipType
+        return null; // Return null if the code does not match any MeatType
     }
 }
