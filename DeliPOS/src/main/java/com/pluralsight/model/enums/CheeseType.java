@@ -1,6 +1,7 @@
 package com.pluralsight.model.enums;
 
 public enum CheeseType {
+    NONE("None"),
     AMERICAN("American Cheese"),
     PROVOLONE("Provolone Cheese"),
     CHEDDAR("Cheddar Cheese"),
@@ -20,7 +21,7 @@ public enum CheeseType {
     // Method to get CheeseType enum from an integer code
     public static CheeseType fromChoice(int choice) {
         for (CheeseType cheeseType : CheeseType.values()) {
-            if (cheeseType.ordinal() + 1 == choice) {
+            if (cheeseType.ordinal() == choice) {
                 return cheeseType;
             }
         }

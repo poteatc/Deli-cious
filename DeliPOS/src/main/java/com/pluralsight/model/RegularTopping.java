@@ -14,6 +14,6 @@ public class RegularTopping extends Topping {
 
     @Override
     public String toString() {
-        return regularToppingType.name() + " " + getToppingType().getDescription();
+        return "\t+ " + regularToppingType.getDescription() + ": FREE";
     }
 }

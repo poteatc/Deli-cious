@@ -1,12 +1,7 @@
 package com.pluralsight.view.order;
 
-import com.pluralsight.model.Bread;
-import com.pluralsight.model.Meat;
-import com.pluralsight.model.Sandwich;
-import com.pluralsight.model.Topping;
-import com.pluralsight.model.enums.BreadType;
-import com.pluralsight.model.enums.MeatType;
-import com.pluralsight.model.enums.SandwichSize;
+import com.pluralsight.model.*;
+import com.pluralsight.model.enums.*;
 import com.pluralsight.view.Screen;
 
 import java.util.Scanner;
@@ -107,6 +102,24 @@ public class SandwichScreen implements Screen {
                         if (meatType != MeatType.NONE) {
                             boolean hasExtra = toppingScreen.selectHasExtra(scanner);
                             topping = new Meat(sandwich.getSandwichSize(), meatType, hasExtra);
+                            sandwich.addTopping(topping);
+                            isAddingToppings = false;
+                        }
+                    }
+                    case 2 -> {
+                        CheeseType cheeseType = toppingScreen.selectCheese(scanner);
+                        if (cheeseType != CheeseType.NONE) {
+                            boolean hasExtra = toppingScreen.selectHasExtra(scanner);
+                            topping = new Cheese(sandwich.getSandwichSize(), cheeseType, hasExtra);
+                            sandwich.addTopping(topping);
+                            isAddingToppings = false;
+                        }
+                    }
+                    case 3 -> {
+                        RegularToppingType regularToppingType = toppingScreen.selectRegularTopping(scanner);
+                        if (regularToppingType != RegularToppingType.NONE) {
+                            boolean hasExtra = toppingScreen.selectHasExtra(scanner);
+                            topping = new RegularTopping(sandwich.getSandwichSize(), regularToppingType, hasExtra);
                             sandwich.addTopping(topping);
                             isAddingToppings = false;
                         }

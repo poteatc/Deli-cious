@@ -13,8 +13,8 @@ public class Meat extends Topping {
 
     @Override
     public String toString() {
-        String s = meatType.getDescription() + " " + getToppingType().getDescription();
+        String s = meatType.getDescription();
         s += withExtra() ? " with extra" : "";
-        return String.format("+ %s costs: $%.2f", s, getPrice());
+        return String.format("\t+ %s costs: $%.2f", s, getPrice());
     }
 }
