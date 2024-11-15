@@ -1,28 +1,44 @@
 package com.pluralsight.model;
 
+/**
+ * Abstract class that represents a generic product.
+ * Each product will define its own price calculation and name.
+ */
 public abstract class Product implements Priceable {
-    //private String name;
-    //private double price;
-    //protected int quantity; // DOES THIS TO BE PROTECTED for subclass to access it
-    // OR CAN getQuantity be private and only accessible through getter for encapsulation?
-    private final int quantity;
+    private final int quantity; // Quantity of the product in the order
 
-
-    // Do Products have a generic name or does it depend on subclass Type?
+    /**
+     * Constructor to initialize the product with a given quantity.
+     *
+     * @param quantity the number of items in the product
+     */
     public Product(int quantity) {
         this.quantity = quantity;
     }
 
-    // Does everything Priceable have a name too?
+    /**
+     * Abstract method to get the name of the product.
+     * Subclasses must provide their own implementation of how the name is generated.
+     *
+     * @return the name of the product
+     */
     public abstract String getName();
 
+    /**
+     * Returns the quantity of the product.
+     *
+     * @return the quantity of the product
+     */
     public int getQuantity() {
         return quantity;
     }
 
-    // This method is abstract because each Product will have a different way to calculate the price
+    /**
+     * Abstract method to calculate the price of the product.
+     * Each subclass will define how to calculate its price based on its specific attributes.
+     *
+     * @return the price of the product
+     */
     @Override
     public abstract double getPrice();
-    // Do I need to have this if it already implements Priceable? Will need to check when calculating total price of all products in Order
-
 }

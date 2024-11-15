@@ -7,10 +7,12 @@ import com.pluralsight.view.Screen;
 import java.util.Scanner;
 
 public class SandwichScreen implements Screen {
+    // Dependencies for handling bread and topping selections
     BreadScreen breadScreen = new BreadScreen();
     ToppingScreen toppingScreen = new ToppingScreen();
     Scanner scanner = new Scanner(System.in);
 
+    // Displays the main sandwich customization options
     @Override
     public void display() {
         System.out.println("""
@@ -33,143 +35,150 @@ public class SandwichScreen implements Screen {
                 """);
     }
 
+    // Allows the user to select the type of bread for the sandwich
     public BreadType selectBreadType() {
-        breadScreen.display();
-        BreadType breadType = breadScreen.getBreadTypeSelection(this.scanner);
-        return breadType;
+        breadScreen.display();  // Display the bread selection screen
+        BreadType breadType = breadScreen.getBreadTypeSelection(this.scanner);  // Get the user's choice for bread
+        return breadType;  // Return the selected bread type
     }
 
+    // Displays sandwich size options to the user
     private void showSandwichSizeOptions() {
         System.out.print("""
                 ---------------------
                 Select Sandwich Size:
                 ---------------------
                 """);
+        // Loop through each size option (except NONE) and display it
         for (SandwichSize type : SandwichSize.values()) {
             if (type != SandwichSize.NONE) {
                 System.out.println((type.ordinal()) + ") " + type.getDescription());
             }
         }
-        System.out.println("0) None");
+        System.out.println("0) None");  // Option to choose no size
     }
 
+    // Allows the user to select the size of the sandwich
     public SandwichSize selectSandwichSize() {
-
         while (true) {
-            showSandwichSizeOptions();
+            showSandwichSizeOptions();  // Display sandwich size options
             System.out.print("Enter your choice: ");
-            String input = scanner.nextLine().trim();
+            String input = scanner.nextLine().trim();  // Get input from user
 
             try {
-                int choice = Integer.parseInt(input);
-                SandwichSize selectedSize = SandwichSize.fromChoice(choice);
+                int choice = Integer.parseInt(input);  // Parse the user's choice
+                SandwichSize selectedSize = SandwichSize.fromChoice(choice);  // Get the corresponding SandwichSize
                 if (selectedSize == null) {
                     System.out.println("\nInvalid option!!! Please enter a number from 0 to 3.\n");
-                    continue;
+                    continue;  // If invalid, prompt again
                 }
                 switch (selectedSize) {
                     case NONE, SMALL, MEDIUM, LARGE -> {
-                        System.out.println("\n" + selectedSize.getDescription() + " selected.\n");
+                        System.out.println("\n" + selectedSize.getDescription() + " selected.");
                         if (selectedSize == SandwichSize.NONE) {
-                            System.out.println("\n(Error): Sandwich much have a bread size. Please select one...\n");
-                            continue;
+                            System.out.println("\n(Error): Sandwich must have a size. Please select one...\n");
+                            continue;  // If NONE, prompt again for a valid size
                         }
-                        return selectedSize; // Valid choice, exit loop by returning choice
+                        return selectedSize;  // Return the valid sandwich size
                     }
                 }
             } catch (NumberFormatException e) {
-                System.out.println("\nInvalid input. Please enter a valid number.\n");
+                System.out.println("\nInvalid input. Please enter a valid number.\n");  // Handle non-numeric input
             }
         }
     }
 
+    // Allows the user to add a topping (meat, cheese, or regular) to the sandwich
     public void addTopping(Sandwich sandwich) {
         boolean isAddingToppings = true;
         Topping topping;
         while (isAddingToppings) {
-            toppingScreen.display();
-            String input = scanner.nextLine().trim();
+            toppingScreen.display();  // Display topping selection screen
+            String input = scanner.nextLine().trim();  // Get input from user
 
             try {
-                int choice = Integer.parseInt(input);
+                int choice = Integer.parseInt(input);  // Parse the choice
                 switch (choice) {
                     case 1 -> {
-                        MeatType meatType = toppingScreen.selectMeat(scanner);
+                        MeatType meatType = toppingScreen.selectMeat(scanner);  // Select a meat topping
                         if (meatType != MeatType.NONE) {
-                            boolean hasExtra = toppingScreen.selectHasExtra(scanner);
-                            topping = new Meat(sandwich.getSandwichSize(), meatType, hasExtra);
-                            sandwich.addTopping(topping);
-                            isAddingToppings = false;
+                            boolean hasExtra = toppingScreen.selectHasExtra(scanner);  // Check if extra is needed
+                            topping = new Meat(sandwich.getSandwichSize(), meatType, hasExtra);  // Create a meat topping
+                            sandwich.addTopping(topping);  // Add topping to sandwich
+                            isAddingToppings = false;  // Exit the loop
                         }
                     }
                     case 2 -> {
-                        CheeseType cheeseType = toppingScreen.selectCheese(scanner);
+                        CheeseType cheeseType = toppingScreen.selectCheese(scanner);  // Select a cheese topping
                         if (cheeseType != CheeseType.NONE) {
-                            boolean hasExtra = toppingScreen.selectHasExtra(scanner);
-                            topping = new Cheese(sandwich.getSandwichSize(), cheeseType, hasExtra);
-                            sandwich.addTopping(topping);
-                            isAddingToppings = false;
+                            boolean hasExtra = toppingScreen.selectHasExtra(scanner);  // Check for extra cheese
+                            topping = new Cheese(sandwich.getSandwichSize(), cheeseType, hasExtra);  // Create a cheese topping
+                            sandwich.addTopping(topping);  // Add topping to sandwich
+                            isAddingToppings = false;  // Exit the loop
                         }
                     }
                     case 3 -> {
-                        RegularToppingType regularToppingType = toppingScreen.selectRegularTopping(scanner);
+                        RegularToppingType regularToppingType = toppingScreen.selectRegularTopping(scanner);  // Select a regular topping
                         if (regularToppingType != RegularToppingType.NONE) {
-                            boolean hasExtra = toppingScreen.selectHasExtra(scanner);
-                            topping = new RegularTopping(sandwich.getSandwichSize(), regularToppingType, hasExtra);
-                            sandwich.addTopping(topping);
-                            isAddingToppings = false;
+                            boolean hasExtra = toppingScreen.selectHasExtra(scanner);  // Check for extra regular topping
+                            topping = new RegularTopping(sandwich.getSandwichSize(), regularToppingType, hasExtra);  // Create a regular topping
+                            sandwich.addTopping(topping);  // Add topping to sandwich
+                            isAddingToppings = false;  // Exit the loop
                         }
                     }
-                    case 0 -> isAddingToppings = false;
+                    case 0 -> isAddingToppings = false;  // Exit if user chooses 0 (cancel adding toppings)
                 }
             } catch (NumberFormatException e) {
-                System.out.println("\nInvalid input. Please enter a valid number.\n");
+                System.out.println("\nInvalid input. Please enter a valid number.\n");  // Handle non-numeric input
             }
         }
     }
 
+    // Customizes the sandwich based on the user's choices
     public Sandwich customize(Sandwich sandwich) {
         while (true) {
-            display();
+            display();  // Display sandwich customization menu
             System.out.print("Enter your choice: ");
-            String input = scanner.nextLine().trim();
+            String input = scanner.nextLine().trim();  // Get input from user
 
             try {
-                int choice = Integer.parseInt(input);
+                int choice = Integer.parseInt(input);  // Parse the user's choice
 
                 switch (choice) {
-                    case 1 -> sandwich.setBreadType(selectBreadType());
-                    case 2 -> sandwich.setSandwichSize(selectSandwichSize());
-                    case 3 -> addTopping(sandwich);
-                    case 4 -> toggleToasted(sandwich);
-                    case 5 -> System.out.println(sandwich.getName());
+                    case 1 -> sandwich.setBreadType(selectBreadType());  // Set bread type
+                    case 2 -> sandwich.setSandwichSize(selectSandwichSize());  // Set sandwich size
+                    case 3 -> addTopping(sandwich);  // Add topping
+                    case 4 -> toggleToasted(sandwich);  // Toast the sandwich
+                    case 5 -> System.out.println(sandwich.getName());  // Review the sandwich
                     case 6 -> {
-                        return sandwich;
+                        return sandwich;  // Add the sandwich to the order and return
                     }
                     case 0 -> {
-                        return null; // Valid choice, exit loop by returning choice
+                        return null;  // Cancel customization and return null
                     }
-                    default -> System.out.println("\nInvalid option. Please enter a number from 0 to 6.\n");
+                    default -> System.out.println("\nInvalid option. Please enter a number from 0 to 6.\n");  // Handle invalid input
                 }
             } catch (NumberFormatException e) {
-                System.out.println("\nInvalid input. Please enter a valid number.\n");
+                System.out.println("\nInvalid input. Please enter a valid number.\n");  // Handle non-numeric input
             }
         }
     }
 
+    // Toggle whether the sandwich is toasted or not
     public void toggleToasted(Sandwich sandwich) {
         if (sandwich.isToasted()) {
             System.out.println("\nSandwich is not toasted...");
-            sandwich.setToasted(false);
+            sandwich.setToasted(false);  // If toasted, make it not toasted
         } else {
             System.out.println("\nToasted sandwich...");
-            sandwich.setToasted(true);
+            sandwich.setToasted(true);  // If not toasted, make it toasted
         }
     }
 
+    // Ask the user if they want to return to the order menu
     public boolean returnToOrderScreen(Scanner scanner) {
         System.out.print("\nWould you like to return to Order Menu? Enter 'y' for yes: ");
-        String choice = scanner.nextLine().trim().toLowerCase();
-        return choice.equalsIgnoreCase("y");
+        String choice = scanner.nextLine().trim().toLowerCase();  // Get input and convert to lowercase
+        return choice.equalsIgnoreCase("y");  // Return true if the user chooses 'y'
     }
 }

@@ -3,48 +3,78 @@ package com.pluralsight.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents an order consisting of multiple products. Implements the Priceable interface to calculate the total price.
+ */
 public class Order implements Priceable {
-    private final List<Product> products;
+    private final List<Product> products; // List to hold all products in the order
 
-    // Constructor initializes the products list
+    /**
+     * Constructor to initialize the list of products in the order.
+     */
     public Order() {
         this.products = new ArrayList<>();
     }
 
-    // Method to add a product to the order
+    /**
+     * Adds a product to the order.
+     *
+     * @param product the product to be added to the order
+     */
     public void addProduct(Product product) {
-        products.add(product);
+        products.add(product); // Add the product to the list
     }
 
-    // Method to get the total price of the order by summing up the prices of all products
+    /**
+     * Removes a product from the order.
+     *
+     * @param product the product to be removed from the order
+     */
+    public void removeProduct(Product product) {
+        products.remove(product); // Remove the product from the list
+    }
+
+    /**
+     * Returns the total price of the order by summing the prices of all the products.
+     * This method uses streams to sum up the prices of each product.
+     *
+     * @return the total price of the order
+     */
     @Override
     public double getPrice() {
-        // Streams through the list of products and sums up the price of each product
-        return products.stream().mapToDouble(Product::getPrice).sum();
+        return products.stream()   // Stream through the list of products
+                .mapToDouble(Product::getPrice) // Map each product to its price
+                .sum(); // Sum up all the prices
     }
 
-    // Optionally, you could also add a method to remove a product from the order
-    public void removeProduct(Product product) {
-        products.remove(product);
-    }
-
-    // Getter for the list of products in the order
+    /**
+     * Returns the list of products in the order.
+     *
+     * @return the list of products in the order
+     */
     public List<Product> getProducts() {
         return products;
     }
 
+    /**
+     * Returns a string representation of the order, including each product's name and the total price of the order.
+     *
+     * @return the formatted string representing the order and its total price
+     */
     @Override
     public String toString() {
-        String s = "";
+        // Create a string representation of the products in the order
+        StringBuilder sb = new StringBuilder();
         for (Product p : products) {
-            s += p.getName() + "\n";
+            sb.append(p.getName()).append("\n");
         }
-        s += String.format("""
+
+        // Append the total price of the order
+        sb.append(String.format("""
         -----------------------
         >>> Order price: $%.2f <<<
-        """, getPrice());
-        return s;
+        """, getPrice()));
+
+        return sb.toString(); // Return the constructed string
     }
-
-
 }

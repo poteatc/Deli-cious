@@ -10,10 +10,9 @@ public class AppController {
         program.start();
     }
 
-    private final Scanner scanner;
-    private final HomeScreen homeScreen;
-    private final OrderController orderController;
-
+    private final Scanner scanner; // Scanner for reading user input
+    private final HomeScreen homeScreen; // Represents the main menu or home screen of the app
+    private final OrderController orderController; // Handles order-related operations
 
     // Constructor to initialize the screens and scanner
     public AppController() {
@@ -24,26 +23,25 @@ public class AppController {
 
     // Main method to start the app
     public void start() {
-        boolean running = true;
+        boolean running = true; // Keeps track of whether the application is running
 
         while (running) {
-            // Display Home Screen
+            // Display the Home Screen menu options
             homeScreen.display();
-            int choice = homeScreen.getSelection(scanner);  // Get user's selection
+            int choice = homeScreen.getSelection(scanner);  // Get user's menu selection
 
+            // Handle user's menu selection
             switch (choice) {
-                case 1 -> orderController.startNewOrder();  // If "New Order", go to order process
-                case 2 -> orderController.viewOrders();
-                case 3 -> orderController.removeOrder();
-                case 4 -> orderController.checkout();
+                case 1 -> orderController.startNewOrder();  // Start a new order process
+                case 2 -> orderController.viewOrders();     // View existing orders
+                case 3 -> orderController.removeOrder();    // Remove an order
+                case 4 -> orderController.checkout();       // Checkout and finalize orders
                 case 0 -> {
                     System.out.println("Exiting the application. Goodbye!");
-                    running = false;  // Exit the loop and end the app
+                    running = false;  // Exit the loop to end the application
                 }
-                default -> System.out.println("Invalid selection. Please choose again.");
+                default -> System.out.println("Invalid selection. Please choose again."); // Handle invalid input
             }
         }
     }
-
 }
-

@@ -1,0 +1,16 @@
+[1]
+
+```````````````````````
+--- Total Sandwich Price: $8.50 ---
+	+ 12" White bread: $8.50
+	- No toppings-
+,,,,,,,,,,,,,,,,,,,,,,,
+
+-----------------------
+>>> Order price: $8.50 <<<
+
+>>>Total price: $8.50 
+>>>Payment amount: $10.00
+>>>Change owed: $1.50
+
+

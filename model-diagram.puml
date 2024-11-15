@@ -9,6 +9,9 @@ class com.pluralsight.model.Sandwich {
 - Bread bread
 - List<Topping> toppings
 - SandwichSize sandwichSize
+- boolean isToasted
++ void setBreadType(BreadType)
++ void setSandwichSize(SandwichSize)
 + void addTopping(Topping)
 + void removeTopping(Topping)
 + String getCheeses()
@@ -16,15 +19,19 @@ class com.pluralsight.model.Sandwich {
 + String getRegularToppings()
 + String getName()
 + double getPrice()
-+ String getBreadDescription()
-+ String getSizeDescription()
++ SandwichSize getSandwichSize()
++ boolean isToasted()
++ void setToasted(boolean)
 }
 
 
 class com.pluralsight.model.Receipt {
+- double paymentAmount
+- double totalPrice
 - List<Order> orders
 - LocalDateTime localDateTime
 + void addOrder(Order)
++ void printToConsole()
 + void printToReceiptFile()
 }
 
@@ -42,6 +49,7 @@ class com.pluralsight.model.Cheese {
 
 
 enum com.pluralsight.model.enums.RegularToppingType {
++  NONE
 +  LETTUCE
 +  PEPPERS
 +  ONIONS
@@ -59,54 +67,35 @@ enum com.pluralsight.model.enums.RegularToppingType {
 +  VINAIGRETTE
 +  AU_JUS
 +  SAUCE
+- String description
++ String getDescription()
++ {static} RegularToppingType fromChoice(int)
 }
 
+
 class com.pluralsight.model.Drink {
-- Size size
-- Type type
+- DrinkSize size
+- DrinkType type
 + String getName()
 + double getPrice()
 + String getSize()
-}
-
-
-enum com.pluralsight.model.Size {
-+  SMALL
-+  MEDIUM
-+  LARGE
-- String description
-- double price
-+ String getDescription()
-+ double getPrice()
-}
-
-
-enum com.pluralsight.model.Type {
-+  TEA
-+  WATER
-+  COLA
-- String description
-+ String getDescription()
++ String getType()
 }
 
 
 enum com.pluralsight.model.enums.ChipType {
++  NONE
 +  DORITOS
 +  LAYS
 +  SUN_CHIPS
 - String description
 + String getDescription()
-}
-
-
-class com.pluralsight.model.Deli {
-- List<Order> orders
-+ void addOrder(Order)
-+ List<Order> getOrders()
++ {static} ChipType fromChoice(int)
 }
 
 
 enum com.pluralsight.model.enums.BreadType {
++  NONE
 +  WHITE
 +  WHEAT
 +  RYE
@@ -114,31 +103,59 @@ enum com.pluralsight.model.enums.BreadType {
 +  TORTILLA
 - String description
 + String getDescription()
++ {static} BreadType fromChoice(int)
+}
+
+
+enum com.pluralsight.model.enums.DrinkType {
++  NONE
++  TEA
++  WATER
++  COLA
+- String description
++ String getDescription()
++ {static} DrinkType fromChoice(int)
 }
 
 
 class com.pluralsight.model.Bread {
 - BreadType breadType
 - SandwichSize sandwichSize
-+ BreadType getBreadType()
 + void setBreadType(BreadType)
 + SandwichSize getSize()
 + void setSize(SandwichSize)
 + double getPrice()
++ String getDescription()
+}
+
+
+enum com.pluralsight.model.enums.DrinkSize {
++  NONE
++  SMALL
++  MEDIUM
++  LARGE
+- String description
+- double price
++ String getDescription()
++ double getPrice()
++ {static} DrinkSize fromChoice(int)
 }
 
 
 enum com.pluralsight.model.enums.CheeseType {
++  NONE
 +  AMERICAN
 +  PROVOLONE
 +  CHEDDAR
 +  SWISS
 - String description
 + String getDescription()
++ {static} CheeseType fromChoice(int)
 }
 
 
 enum com.pluralsight.model.enums.MeatType {
++  NONE
 +  STEAK
 +  HAM
 +  SALAMI
@@ -147,12 +164,12 @@ enum com.pluralsight.model.enums.MeatType {
 +  BACON
 - String description
 + String getDescription()
++ {static} MeatType fromChoice(int)
 }
 
 
 class com.pluralsight.model.Order {
 - List<Product> products
-- LocalDateTime localDateTime
 + void addProduct(Product)
 + double getPrice()
 + void removeProduct(Product)
@@ -182,11 +199,13 @@ class com.pluralsight.model.Chip {
 
 
 enum com.pluralsight.model.enums.SandwichSize {
++  NONE
 +  SMALL
 +  MEDIUM
 +  LARGE
 - String description
 + String getDescription()
++ {static} SandwichSize fromChoice(int)
 }
 
 
@@ -197,7 +216,6 @@ abstract class com.pluralsight.model.Topping {
 + double getPrice()
 + boolean withExtra()
 + ToppingType getToppingType()
-+ SandwichSize getSandwichSize()
 }
 
 

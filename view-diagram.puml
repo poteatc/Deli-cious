@@ -1,12 +1,16 @@
 @startuml
 class com.pluralsight.view.order.ChipsScreen {
 + void display()
-+ int getSelection(Scanner)
+- void showOptions()
++ ChipType getSelection(Scanner)
 }
 
 class com.pluralsight.view.CheckoutScreen {
 + void display()
 + int getSelection(Scanner)
++ double getPayment(Scanner)
++ boolean confirmPurchase(Scanner)
++ void printReceipt(List<Order>,double)
 }
 
 interface com.pluralsight.view.Screen {
@@ -14,24 +18,50 @@ interface com.pluralsight.view.Screen {
 }
 
 class com.pluralsight.view.order.SandwichScreen {
+~ BreadScreen breadScreen
+~ ToppingScreen toppingScreen
+~ Scanner scanner
 + void display()
-+ int getSelection(Scanner)
++ BreadType selectBreadType()
+- void showSandwichSizeOptions()
++ SandwichSize selectSandwichSize()
++ void addTopping(Sandwich)
++ Sandwich customize(Sandwich)
++ void toggleToasted(Sandwich)
++ boolean returnToOrderScreen(Scanner)
 }
+
 
 class com.pluralsight.view.HomeScreen {
-+ void display()
-+ int getSelection(Scanner)
-}
-
-class com.pluralsight.view.order.DrinkScreen {
 + void display()
 - void showOptions()
 + int getSelection(Scanner)
 }
 
+class com.pluralsight.view.order.DrinkScreen {
++ void display()
+- void showDrinkTypeOptions()
+- void showDrinkSizeOptions()
++ DrinkType getDrinkTypeSelection(Scanner)
++ DrinkSize getDrinkSizeSelection(Scanner)
++ boolean returnToOrderScreen(Scanner)
+}
+
+class com.pluralsight.view.order.ToppingScreen {
++ void display()
+- void showMeatTypeOptions()
++ MeatType selectMeat(Scanner)
+- void showCheeseTypeOptions()
++ CheeseType selectCheese(Scanner)
++ boolean selectHasExtra(Scanner)
+- void showRegularToppingTypeOptions()
++ RegularToppingType selectRegularTopping(Scanner)
+}
+
 class com.pluralsight.view.order.BreadScreen {
 + void display()
-+ int getSelection(Scanner)
+- void showBreadTypeOptions()
++ BreadType getBreadTypeSelection(Scanner)
 }
 
 class com.pluralsight.view.OrderScreen {
@@ -46,6 +76,7 @@ com.pluralsight.view.Screen <|.. com.pluralsight.view.CheckoutScreen
 com.pluralsight.view.Screen <|.. com.pluralsight.view.order.SandwichScreen
 com.pluralsight.view.Screen <|.. com.pluralsight.view.HomeScreen
 com.pluralsight.view.Screen <|.. com.pluralsight.view.order.DrinkScreen
+com.pluralsight.view.Screen <|.. com.pluralsight.view.order.ToppingScreen
 com.pluralsight.view.Screen <|.. com.pluralsight.view.order.BreadScreen
 com.pluralsight.view.Screen <|.. com.pluralsight.view.OrderScreen
 @enduml
