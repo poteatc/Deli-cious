@@ -51,7 +51,7 @@ public class Receipt {
         }
 
         System.out.printf(">>>Payment amount: $%.2f\n", paymentAmount);
-        System.out.printf(">>>Total price: $%.2f: \n", totalPrice);
+        System.out.printf(">>>Total price: $%.2f \n", totalPrice);
         System.out.printf(">>>Change owed: $%.2f\n\n\n", (paymentAmount - totalPrice));
     }
 

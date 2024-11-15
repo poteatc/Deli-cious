@@ -49,7 +49,7 @@ public class BreadScreen implements Screen {
                 choice = Integer.parseInt(input);
                 BreadType selectedBreadType = BreadType.fromChoice(choice);
                 if (selectedBreadType == null) {
-                    System.out.println("\nInvalid option!!! Please enter a number from 0 to 5.\n");
+                    System.out.println("\nInvalid option!!! Please enter a number from 0 to " + BreadType.values().length + ".\n");
                     continue;
                 }
                 switch (selectedBreadType) {

@@ -37,10 +37,10 @@ public class CheckoutScreen implements Screen {
                     case 1, 0 -> {
                         return choice; // Valid choice, exit loop by returning choice
                     }
-                    default -> System.out.println("Invalid option. Please enter 1 to Confirm or 0 to Cancel.");
+                    default -> System.out.println("\nInvalid option. Please enter 1 to Confirm or 0 to Cancel.\n");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter 1 or 0.");
+                System.out.println("\nInvalid input. Please enter 1 or 0.\n");
             }
         }
     }
@@ -57,19 +57,19 @@ public class CheckoutScreen implements Screen {
             try {
                 paymentAmount = Double.parseDouble(input);
                 if (paymentAmount <= 0) {
-                    System.out.println("Invalid input. Please enter a positive amount");
+                    System.out.println("\nInvalid input. Please enter a positive amount...\n");
                 } else {
                     return paymentAmount;
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a number value for the payment (Ex. $100, $25.0)");
+                System.out.println("\nInvalid input. Please enter a number value for the payment (Ex. $100, $25.0)...\n");
             }
         }
         return -99;
     }
 
     public boolean confirmPurchase(Scanner scanner) {
-        System.out.println("Would you like to confirm your purchase? (Enter 'y' for yes): ");
+        System.out.print("Would you like to confirm your purchase? (Enter 'y' for yes): ");
         String input = scanner.nextLine().trim();
         return input.equalsIgnoreCase("y");
     }

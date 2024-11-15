@@ -11,19 +11,22 @@ public class ToppingScreen implements Screen {
     @Override
     public void display() {
         System.out.print("""
-                Add Topping:
+                ----------------
+                  Add Topping:
                 ----------------
                 1) Meats
                 2) Cheeses
                 3) Regular Toppings
                 0) Return
+                
                 """);
     }
 
     // Want to make all options generalized like this DrinkScreen showOptions() so I only need to add to the Drinks enums to update the menu
     private void showMeatTypeOptions() {
         System.out.print("""
-                Select Meat Type:
+                ---------------------
+                  Select Meat Type:
                 ---------------------
                 """);
         for (MeatType type : MeatType.values()) {
@@ -31,7 +34,7 @@ public class ToppingScreen implements Screen {
                 System.out.println((type.ordinal()) + ") " + type.getDescription());
             }
         }
-        System.out.println("0) None");
+        System.out.println("0) None\n");
     }
 
     public MeatType selectMeat(Scanner scanner) {
@@ -45,7 +48,7 @@ public class ToppingScreen implements Screen {
                 int choice = Integer.parseInt(input);
                 MeatType selectedType = MeatType.fromChoice(choice);
                 if (selectedType == null) {
-                    System.out.println("Invalid option!!! Please enter a number from the list.");
+                    System.out.println("\nInvalid option!!! Please enter a number from the list.\n");
                     continue;
                 }
                 switch (selectedType) {
@@ -55,7 +58,7 @@ public class ToppingScreen implements Screen {
                     }
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a valid number.");
+                System.out.println("\nInvalid input. Please enter a valid number.\n");
             }
         }
         return MeatType.NONE;
@@ -64,7 +67,7 @@ public class ToppingScreen implements Screen {
 
 
     public boolean selectHasExtra(Scanner scanner) {
-        System.out.println("Would you like extra? Enter 'y' for yes");
+        System.out.print("\nWould you like extra? Enter 'y' for yes: ");
         String input = scanner.nextLine().toLowerCase().trim();
         boolean wantsExtra = input.equalsIgnoreCase("y");
         return wantsExtra;

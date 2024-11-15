@@ -1,9 +1,6 @@
 package com.pluralsight.controller;
 
-import com.pluralsight.model.Chip;
-import com.pluralsight.model.Drink;
-import com.pluralsight.model.Order;
-import com.pluralsight.model.Product;
+import com.pluralsight.model.*;
 import com.pluralsight.model.enums.*;
 import com.pluralsight.view.*;
 import com.pluralsight.view.order.ChipsScreen;
@@ -57,7 +54,6 @@ public class AppController {
             switch (choice) {
                 case 1 -> startNewOrder();  // If "New Order", go to order process
                 case 2 -> viewOrders();
-                // TODO: Add way to remove orders
                 case 3 -> removeOrder();
                 case 4 -> checkout();
                 case 0 -> {
@@ -82,21 +78,21 @@ public class AppController {
             try {
                 choice = Integer.parseInt(input);
                 if (choice > 0 && choice <= orders.size()) {
-                    System.out.println("Order #" + choice + " successfully removed.\n");
+                    System.out.println("\nOrder #" + choice + " successfully removed.\n");
                     orders.remove(choice - 1);
                 } else {
                     System.out.println("\nInvalid Order #...");
                 }
 
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a number...\n");
+                System.out.println("\nInvalid input. Please enter a number...\n");
             }
         }
     }
 
     private void viewOrders() {
         if (orders.isEmpty()) {
-            System.out.println("No orders confirmed...");
+            System.out.println("No orders confirmed...\n\n");
         } else {
             System.out.print("""
                     \n~~~~~~~~~~~~~~~~~~~~~~
@@ -133,14 +129,13 @@ public class AppController {
                 case 4 -> viewOrder(order);
                 case 5 -> {
                     confirmOrder(order);  // Confirm order
-                    System.out.println("Order confirmed.");
                     orderInProgress = false;
                 }
                 case 0 -> {
-                    System.out.println("Order cancelled.");
+                    System.out.println("\nOrder cancelled.");
                     orderInProgress = false;  // Cancel the order and return to HomeScreen
                 }
-                default -> System.out.println("Invalid option. Please try again.");
+                default -> System.out.println("\nInvalid option. Please try again.");
             }
         }
     }
@@ -150,36 +145,17 @@ public class AppController {
         boolean customizingSandwich = true;
         while (customizingSandwich) {
             // Logic to add a sandwich
-            if (sandwichScreen.getSelection(scanner) == 0) {
+            Sandwich sandwich = sandwichScreen.customize(scanner);
+            if (sandwich == null) {
                 customizingSandwich = !sandwichScreen.returnToOrderScreen(scanner);
+            } else {
+                order.addProduct(sandwich);
+                System.out.println("\nCustom sandwich successfully added to order.\n");
+                customizingSandwich = false;
             }
-//            BreadType breadType = sandwichScreen.selectBreadType(scanner);
-//            if (breadType == BreadType.NONE) {
-//                System.out.println("Must select a bread type...");
-//                customizingSandwich = !sandwichScreen.returnToOrderScreen(scanner);
-//                //customizingSandwich = !drinkScreen.returnToOrderScreen(scanner);
-//                continue;
-//            }
-//            SandwichSize sandwichSize = sandwichScreen.selectSandwichSize(scanner);
-//            if (sandwichSize == SandwichSize.NONE) {
-//                System.out.println("Must select a sandwich size...");
-//                customizingSandwich = !sandwichScreen.returnToOrderScreen(scanner);
-//                continue;
-//            }
         }
 
-//        //sandwichScreen.display();
-//        SandwichSize sandwichSize = sandwichScreen.selectSandwichSize(scanner);
-//        if (sandwichSize != null) {
-//            System.out.println("You selected: " + sandwichSize.getDescription());
-//        }
-//        MeatType meatType = sandwichScreen.selectMeatType(scanner);
-//        if (meatType != null) {
-//            System.out.println("You selected: " + meatType.getDescription());
-//        }
 
-
-        //sandwichScreen.getSelection(scanner);  // Get the user's sandwich selection
     }
 
     private void addDrink(Order order) {
@@ -223,7 +199,7 @@ public class AppController {
         } else {
             int productNumber = 1;
             for (Product p : order.getProducts()) {
-                System.out.println("[" + (productNumber++) + "] " + p.getName());
+                System.out.println("\n[" + (productNumber++) + "]:\n" + p.getName());
             }
             System.out.printf("""
                     ~~~~~~~~~~~~~~~~~~~~~~
@@ -234,7 +210,12 @@ public class AppController {
     }
 
     private void confirmOrder(Order order) {
-        orders.add(order);
+        if (order.getProducts().isEmpty()) {
+            System.out.println("(Error) Your order is empty...\n");
+        } else {
+            orders.add(order);
+            System.out.println("\n Order added successfully! \n");
+        }
     }
 
     private void checkout() {
@@ -251,7 +232,7 @@ public class AppController {
             if (choice == 1) {
                 double paymentAmount = checkoutScreen.getPayment(scanner);
                 if (paymentAmount < orders.stream().mapToDouble(Order::getPrice).sum()) {
-                    System.out.println("Not enough money...");
+                    System.out.println("Not enough money to complete payment. Returning to checkout...\n");
                     continue;
                 }
                 if (!(paymentAmount == -99)) {

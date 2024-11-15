@@ -1,0 +1,9 @@
++ Medium Water: $2.50
++ Sun Chips: $1.50
+-----------------------
+- Order price: $4.00
+
++ Doritos: $1.50
+-----------------------
+- Order price: $1.50
+

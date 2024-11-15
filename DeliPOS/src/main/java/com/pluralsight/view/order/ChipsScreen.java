@@ -11,7 +11,8 @@ public class ChipsScreen implements Screen {
     @Override
     public void display() {
         System.out.print("""
-                Select Chips:
+                ----------------
+                  Select Chips:
                 ----------------
                 """);
         showOptions();
@@ -39,19 +40,19 @@ public class ChipsScreen implements Screen {
                 choice = Integer.parseInt(input);
                 ChipType selectedChip = ChipType.fromChoice(choice);
                 if (selectedChip == null) {
-                    System.out.println("Invalid option!!! Please enter a number from 0 to 3.");
+                    System.out.println("\nInvalid option!!! Please enter a number from 0 to" + ChipType.values().length + "\n.");
                     continue;
                 }
                 switch (selectedChip) {
                     case NONE, DORITOS, LAYS, SUN_CHIPS -> {
-                        System.out.println(selectedChip.getDescription() + " selected.");
-                        System.out.println("Returning to Order Menu...");
+                        System.out.println("\n" + selectedChip.getDescription() + " selected.\n");
+                        System.out.println("\nReturning to Order Menu...\n");
                         selectingChips = false;
                         return selectedChip; // Valid choice, exit loop by returning choice
                     }
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input!!! Please enter a valid number.");
+                System.out.println("\nInvalid input!!! Please enter a valid number.\n");
             }
         }
         return ChipType.NONE;

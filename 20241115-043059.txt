@@ -1,0 +1,21 @@
+12" Rye bread: $8.50
++ Steak Meat Premium Topping with extra costs: $4.50
++ Bacon Meat Premium Topping costs: $3.00
+Sandwich Price: $16.00
+12" Rye bread: $8.50
++ Steak Meat Premium Topping with extra costs: $4.50
++ Bacon Meat Premium Topping costs: $3.00
+Sandwich Price: $16.00
++ Sun Chips: $1.50
+12" Rye bread: $8.50
++ Steak Meat Premium Topping with extra costs: $4.50
++ Bacon Meat Premium Topping costs: $3.00
+Sandwich Price: $16.00
++ Large Water: $3.00
+-----------------------
+- Order price: $52.50
+
++ Sun Chips: $1.50
+-----------------------
+- Order price: $1.50
+
