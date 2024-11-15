@@ -1,6 +1,7 @@
 package com.pluralsight.model.enums;
 
 public enum MeatType {
+    NONE("No Meat"),
     STEAK("Steak"),
     HAM("Ham"),
     SALAMI("Salami"),
@@ -23,7 +24,7 @@ public enum MeatType {
     // Method to get MeatTYpe enum from an integer code
     public static MeatType fromChoice(int choice) {
         for (MeatType meatType : MeatType.values()) {
-            if (meatType.ordinal() + 1 == choice) {
+            if (meatType.ordinal() == choice) {
                 return meatType;
             }
         }

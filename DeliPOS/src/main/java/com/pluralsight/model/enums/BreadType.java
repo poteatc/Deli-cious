@@ -1,6 +1,7 @@
 package com.pluralsight.model.enums;
 
 public enum BreadType {
+    NONE("None"),
     WHITE("White bread"),
     WHEAT("Wheat bread"),
     RYE("Rye bread"),
@@ -22,7 +23,7 @@ public enum BreadType {
     // Method to get BreadType enum from an integer code
     public static BreadType fromChoice(int choice) {
         for (BreadType breadType : BreadType.values()) {
-            if (breadType.ordinal() + 1 == choice) {
+            if (breadType.ordinal() == choice) {
                 return breadType;
             }
         }

@@ -13,136 +13,121 @@ import java.util.Scanner;
 
 public class SandwichScreen implements Screen {
     BreadScreen breadScreen = new BreadScreen();
+    ToppingScreen toppingScreen = new ToppingScreen();
     Sandwich sandwich = new Sandwich();
-    Bread bread = new Bread();
 
     @Override
     public void display() {
         System.out.println("""
+                 \n
+                 /-------------------\\
+                /                     \\
+                -----------------------
                 Sandwich Customization:
                 -----------------------
+                \\                     /
+                 \\-------------------/
+                ~~~~~~~~~~~~~~~~~~~~~~~~
                 1) Select Bread
                 2) Select Size
-                3) Add Meat
-                4) Add Cheese
-                5) Add Other Toppings
-                6) Add Sauces
-                7) Toast Sandwich
-                0) Finish Sandwich
+                3) Add Topping
+                4) Toast
+                5) Review
+                5) Add to Order
+                0) Cancel
                 """);
     }
 
     public BreadType selectBreadType(Scanner scanner) {
         breadScreen.display();
-        BreadType breadType = breadScreen.getSelection(scanner);
+        BreadType breadType = breadScreen.getBreadTypeSelection(scanner);
         sandwich.setBreadType(breadType);
         return breadType;
     }
 
     private void showSandwichSizeOptions() {
-        for (SandwichSize type : SandwichSize.values()) {
-            System.out.println((type.ordinal() + 1) + ") " + type.getDescription());
-        }
-        System.out.println("0) Return");
-    }
-
-    public SandwichSize selectSandwichSize(Scanner scanner) {
         System.out.print("""
+                ---------------------
                 Select Sandwich Size:
                 ---------------------
                 """);
-        showSandwichSizeOptions();
+        for (SandwichSize type : SandwichSize.values()) {
+            if (type != SandwichSize.NONE) {
+                System.out.println((type.ordinal()) + ") " + type.getDescription());
+            }
+        }
+        System.out.println("0) None");
+    }
 
+    public SandwichSize selectSandwichSize(Scanner scanner) {
         int choice = -1;
-        while (true) {
+        boolean selecting = true;
+
+        while (selecting) {
+            showSandwichSizeOptions();
             System.out.print("Enter your choice: ");
             String input = scanner.nextLine().trim();
 
             try {
                 choice = Integer.parseInt(input);
-                if (choice == 0) {
-                    System.out.println("Returning to Bread Type Screen");
-                    selectBreadType(scanner);
-                    return null;
+                SandwichSize selectedSize = SandwichSize.fromChoice(choice);
+                if (selectedSize == null) {
+                    System.out.println("Invalid option!!! Please enter a number from 0 to 3.");
+                    continue;
                 }
-                SandwichSize selectedSandwichSize = SandwichSize.fromChoice(choice);
-                if (selectedSandwichSize != null) {
-                    switch (selectedSandwichSize) {
-                        case SMALL, MEDIUM, LARGE -> {
-                            sandwich.setSandwichSize(selectedSandwichSize);
-                            return selectedSandwichSize;
+                switch (selectedSize) {
+                    case NONE, SMALL, MEDIUM, LARGE -> {
+                        System.out.println(selectedSize.getDescription() + " selected.");
+                        if (selectedSize == SandwichSize.NONE) {
+                            System.out.println("(Error): Sandwich much have a bread size. Please select one...");
+                            continue;
                         }
+                        return selectedSize; // Valid choice, exit loop by returning choice
                     }
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please enter a valid number.");
             }
-            System.out.println("Invalid option!!! Please enter a number from 0 to 3.");
-            System.out.println("Returning to Sandwich Screen...");
-            return null;
         }
-
-    }
-    public void showMeatTypeOptions() {
-            for (MeatType type : MeatType.values()) {
-                System.out.println((type.ordinal() + 1) + ") " + type.getDescription());
-            }
-            System.out.println("0) Return");
+        return SandwichSize.NONE;
     }
 
-    public MeatType selectMeatType(Scanner scanner) {
-        System.out.print("""
-                Select Meat Type:
-                ---------------------
-                """);
-        showMeatTypeOptions();
-
-        int choice = -1;
-        while (true) {
-            System.out.print("Enter your choice: ");
+    public Topping addTopping(Scanner scanner) {
+        boolean isAddingToppings = true;
+        Topping topping = null;
+        while (isAddingToppings) {
+            toppingScreen.display();
             String input = scanner.nextLine().trim();
 
             try {
-                choice = Integer.parseInt(input);
-                if (choice == 0) {
-                    System.out.println("Returning to Sandwich Size Screen");
-                    selectSandwichSize(scanner);
-                    return null;
-                }
-                MeatType selectedMeatType = MeatType.fromChoice(choice);
-                //Meat meat = new Meat(sandwich.setSandwichSize(), )
-                if (selectedMeatType != null) {
-                    switch (selectedMeatType) {
-                        case STEAK, HAM, SALAMI -> {
-                            // sandwich.addTopping(selectedMeatType);
-                            boolean hasExtra = selectHasExtra(scanner);
-                            Meat meat = new Meat(bread.getSize(), selectedMeatType, hasExtra);
-                            sandwich.addTopping(meat);
-                            return selectedMeatType;
+                int choice = Integer.parseInt(input);
+                switch (choice) {
+                    case 1 -> {
+                        MeatType meatType = toppingScreen.selectMeat(scanner);
+                        if (meatType != MeatType.NONE) {
+                            boolean hasExtra = toppingScreen.selectHasExtra(scanner);
+                            topping = new Meat(sandwich.getSandwichSize(), meatType, hasExtra);
+                            sandwich.addTopping(topping);
+                            isAddingToppings = false;
                         }
                     }
-
+                    case 0 -> {
+                        isAddingToppings = false;
+                    }
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please enter a valid number.");
             }
-            System.out.println("Invalid option!!! Please enter a number from 0 to 6.");
-            System.out.println("Returning to Sandwich Screen...");
-            return null;
         }
-    }
-
-    private boolean selectHasExtra(Scanner scanner) {
-        System.out.println("Would you like extra? Enter 'y' for yes");
-        String input = scanner.nextLine().toLowerCase().trim();
-        boolean wantsExtra = input.equalsIgnoreCase("y");
-        return wantsExtra;
+        return topping;
     }
 
     public int getSelection(Scanner scanner) {
+
         int choice = -1;
 
         while (true) {
+            display();
             System.out.print("Enter your choice: ");
             String input = scanner.nextLine().trim();
 
@@ -150,9 +135,13 @@ public class SandwichScreen implements Screen {
                 choice = Integer.parseInt(input);
 
                 switch (choice) {
-                    case 1 -> selectBreadType(scanner);
-                    case 2 -> selectSandwichSize(scanner);
-                    case 3, 4, 5, 6, 7, 0 -> {
+                    case 1 -> sandwich.setBreadType(selectBreadType(scanner));
+                    case 2 -> sandwich.setSandwichSize(selectSandwichSize(scanner));
+                    case 3 -> addTopping(scanner);
+                    case 4 -> toggleToasted();
+                    case 5 -> System.out.println(sandwich.getName());
+                    case 6 -> System.out.println("Finish Sandwich selected");
+                    case 0 -> {
                         return choice; // Valid choice, exit loop by returning choice
                     }
                     default -> System.out.println("Invalid option. Please enter a number from 0 to 7.");
@@ -163,5 +152,23 @@ public class SandwichScreen implements Screen {
         }
     }
 
+    public void toggleToasted() {
+        if (sandwich.isToasted()) {
+            System.out.println("Sandwich is not toasted...");
+            sandwich.setToasted(false);
+        } else {
+            System.out.println("Toasted sandwich...");
+            sandwich.setToasted(true);
+        }
+    }
 
+    public boolean returnToOrderScreen(Scanner scanner) {
+        System.out.println("Would you like to return to Order Menu? Enter 'y' for yes");
+        String choice = scanner.nextLine().trim().toLowerCase();
+        if (choice.equalsIgnoreCase("y")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

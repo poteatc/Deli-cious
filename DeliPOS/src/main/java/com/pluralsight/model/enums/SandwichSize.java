@@ -1,6 +1,7 @@
 package com.pluralsight.model.enums;
 
 public enum SandwichSize {
+    NONE("None"),
     SMALL("4\""),
     MEDIUM("8\""),
     LARGE("12\"");
@@ -20,7 +21,7 @@ public enum SandwichSize {
     // Method to get SandwichSize enum from an integer code
     public static SandwichSize fromChoice(int choice) {
         for (SandwichSize sandwichSize : SandwichSize.values()) {
-            if (sandwichSize.ordinal() + 1 == choice) {
+            if (sandwichSize.ordinal() == choice) {
                 return sandwichSize;
             }
         }

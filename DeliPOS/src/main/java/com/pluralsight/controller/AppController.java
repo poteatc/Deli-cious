@@ -147,19 +147,36 @@ public class AppController {
 
 
     private void addSandwich(Order order) {
-        // Logic to add a sandwich
-        sandwichScreen.display();
-        BreadType breadType = sandwichScreen.selectBreadType(scanner);
-        System.out.println("You selected: " + breadType.getDescription());
-        //sandwichScreen.display();
-        SandwichSize sandwichSize = sandwichScreen.selectSandwichSize(scanner);
-        if (sandwichSize != null) {
-            System.out.println("You selected: " + sandwichSize.getDescription());
+        boolean customizingSandwich = true;
+        while (customizingSandwich) {
+            // Logic to add a sandwich
+            if (sandwichScreen.getSelection(scanner) == 0) {
+                customizingSandwich = !sandwichScreen.returnToOrderScreen(scanner);
+            }
+//            BreadType breadType = sandwichScreen.selectBreadType(scanner);
+//            if (breadType == BreadType.NONE) {
+//                System.out.println("Must select a bread type...");
+//                customizingSandwich = !sandwichScreen.returnToOrderScreen(scanner);
+//                //customizingSandwich = !drinkScreen.returnToOrderScreen(scanner);
+//                continue;
+//            }
+//            SandwichSize sandwichSize = sandwichScreen.selectSandwichSize(scanner);
+//            if (sandwichSize == SandwichSize.NONE) {
+//                System.out.println("Must select a sandwich size...");
+//                customizingSandwich = !sandwichScreen.returnToOrderScreen(scanner);
+//                continue;
+//            }
         }
-        MeatType meatType = sandwichScreen.selectMeatType(scanner);
-        if (meatType != null) {
-            System.out.println("You selected: " + meatType.getDescription());
-        }
+
+//        //sandwichScreen.display();
+//        SandwichSize sandwichSize = sandwichScreen.selectSandwichSize(scanner);
+//        if (sandwichSize != null) {
+//            System.out.println("You selected: " + sandwichSize.getDescription());
+//        }
+//        MeatType meatType = sandwichScreen.selectMeatType(scanner);
+//        if (meatType != null) {
+//            System.out.println("You selected: " + meatType.getDescription());
+//        }
 
 
         //sandwichScreen.getSelection(scanner);  // Get the user's sandwich selection
@@ -233,6 +250,10 @@ public class AppController {
             int choice = checkoutScreen.getSelection(scanner);  // Get the user's checkout confirmation or cancellation
             if (choice == 1) {
                 double paymentAmount = checkoutScreen.getPayment(scanner);
+                if (paymentAmount < orders.stream().mapToDouble(Order::getPrice).sum()) {
+                    System.out.println("Not enough money...");
+                    continue;
+                }
                 if (!(paymentAmount == -99)) {
                     checkingOut = checkoutScreen.confirmPurchase(scanner);
                     if (checkingOut) {

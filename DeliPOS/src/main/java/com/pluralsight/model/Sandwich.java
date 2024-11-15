@@ -11,13 +11,15 @@ public class Sandwich extends Product implements Priceable {
     private Bread bread;  // Bread object with BreadType and Size
     private List<Topping> toppings;  // List of Topping objects (regular or premium)
     private SandwichSize sandwichSize;  // Size enum for sandwich (SMALL, MEDIUM, LARGE)
+    private boolean isToasted;
 
     // Constructor
-    public Sandwich(int quantity, Bread bread, SandwichSize sandwichSize) {
+    public Sandwich(int quantity, Bread bread) {
         super(quantity);
         this.bread = bread;
-        this.sandwichSize = sandwichSize;
+        this.sandwichSize = bread.getSize();
         this.toppings = new ArrayList<>();
+        this.isToasted = false;
     }
 
     public Sandwich() {
@@ -25,10 +27,15 @@ public class Sandwich extends Product implements Priceable {
         this.bread = new Bread();
         this.sandwichSize = bread.getSize();
         this.toppings = new ArrayList<>();
+        this.isToasted = false;
     }
 
     public void setBreadType(BreadType breadType) {
         this.bread.setBreadType(breadType);
+    }
+
+    public BreadType getBreadType() {
+        return bread.getBreadType();
     }
 
     public void addBread(Bread bread) {
@@ -69,14 +76,18 @@ public class Sandwich extends Product implements Priceable {
     }
     @Override
     public String getName() {
-        String breadDescription = getBreadDescription() + " " + getSizeDescription() + ": " + "\n";
+        String sandwichToasted = isToasted ? "*Toasted*\n" : "";
+        String breadDescription = bread.getDescription() + "\n" + sandwichToasted;
         String toppingsDescription = "";
-        for (Topping t : toppings) {
-            toppingsDescription += t + "\n";
+        if (toppings.isEmpty()) {
+            toppingsDescription += "No Toppings\n";
+        } else {
+            for (Topping t : toppings) {
+                toppingsDescription += t + "\n";
+            }
         }
         //sandwichDescription += meats + "\n" + cheeses + "\n" + regularToppings + "\n";
-        return breadDescription + toppingsDescription
-                ;
+        return String.format("%s%sSandwich Price: $%.2f", breadDescription, toppingsDescription, getPrice());
     }
 
     @Override
@@ -95,14 +106,15 @@ public class Sandwich extends Product implements Priceable {
         return price;
     }
 
-
-    // Getter for BreadType description (returns the description from BreadType)
-    public String getBreadDescription() {
-        return bread.getBreadType().getDescription();  // Returns description from BreadType
+    public SandwichSize getSandwichSize() {
+        return sandwichSize;
     }
 
-    // Getter for the sandwich size description (e.g., "4''", "8''", "12''")
-    public String getSizeDescription() {
-        return sandwichSize.getDescription();  // Returns the size description
+    public boolean isToasted() {
+        return isToasted;
+    }
+
+    public void setToasted(boolean toasted) {
+        isToasted = toasted;
     }
 }

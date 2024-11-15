@@ -23,7 +23,7 @@ class OrderTest {
         Topping smallCheeseWithExtra = new Cheese(SandwichSize.SMALL, CheeseType.PROVOLONE, true);
         System.out.println(smallCheeseWithExtra);
 
-        Sandwich sandwich = new Sandwich(1, new Bread(BreadType.WHEAT, SandwichSize.SMALL), SandwichSize.SMALL);
+        Sandwich sandwich = new Sandwich(1, new Bread(BreadType.WHEAT, SandwichSize.SMALL));
         sandwich.addTopping(t);
         sandwich.addTopping(smallMeat);
         sandwich.addTopping(smallCheeseWithExtra);
