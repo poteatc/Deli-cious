@@ -7,12 +7,6 @@ public class Chip extends Product {
     //private int quantity = 0; NOW PART OF SUPERCLASS PRODUCT
     private ChipType chipType;
 
-//    public Chip(String chipString, int quantity) {
-//        super(chipString, quantity, CHIP_PRICE); // Chips are always the same price
-//        this.quantity = quantity;
-//        this.chipType = ChipType.valueOf(chipString);
-//    }
-
     public Chip(ChipType chipType, int quantity) {
         super(quantity); // Chips are always the same price
         this.chipType = chipType;
@@ -26,6 +20,9 @@ public class Chip extends Product {
 
     @Override
     public double getPrice() {
+        if (chipType == ChipType.NONE) {
+            return 0;
+        }
         return CHIP_PRICE * getQuantity(); // Chips have a fixed price
     }
 }

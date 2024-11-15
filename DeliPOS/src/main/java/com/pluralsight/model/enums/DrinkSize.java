@@ -4,6 +4,7 @@ import com.pluralsight.model.Drink;
 
 // Enum for Drink sizes
     public enum DrinkSize {
+        NONE("None", 0.0),
         SMALL("Small", 2.00),
         MEDIUM("Medium", 2.50),
         LARGE("Large", 3.00);
@@ -27,7 +28,7 @@ import com.pluralsight.model.Drink;
         // Method to get DrinkSize enum from an integer code
         public static DrinkSize fromChoice(int choice) {
             for (DrinkSize drinkSize : DrinkSize.values()) {
-                if (drinkSize.ordinal() + 1 == choice) {
+                if (drinkSize.ordinal() == choice) {
                     return drinkSize;
                 }
             }

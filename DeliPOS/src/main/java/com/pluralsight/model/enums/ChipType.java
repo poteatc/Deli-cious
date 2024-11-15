@@ -1,10 +1,10 @@
 package com.pluralsight.model.enums;
 
 public enum ChipType {
+    NONE("None"),
     DORITOS("Doritos"),
     LAYS("Lays"),
     SUN_CHIPS("Sun Chips");
-    //NONE("No Chips Selected");
 
     private final String description;
 

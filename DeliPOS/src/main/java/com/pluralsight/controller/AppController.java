@@ -3,10 +3,7 @@ package com.pluralsight.controller;
 import com.pluralsight.model.Chip;
 import com.pluralsight.model.Deli;
 import com.pluralsight.model.Drink;
-import com.pluralsight.model.enums.BreadType;
-import com.pluralsight.model.enums.ChipType;
-import com.pluralsight.model.enums.MeatType;
-import com.pluralsight.model.enums.SandwichSize;
+import com.pluralsight.model.enums.*;
 import com.pluralsight.view.*;
 import com.pluralsight.view.order.ChipsScreen;
 import com.pluralsight.view.order.DrinkScreen;
@@ -101,19 +98,38 @@ public class AppController {
 
         //sandwichScreen.getSelection(scanner);  // Get the user's sandwich selection
     }
+    private void askToReturnToOrder(Scanner scanner) {
+
+    }
 
     private void addDrink() {
-        // Logic to add a drink
-        drinkScreen.display();
-        int choice = drinkScreen.getSelection(scanner);  // Get the user's drink selection
-        //Drink drink = new Drink(Drink);
+        boolean addingDrink = true;
+        while (addingDrink) {
+            // Logic to add a drink
+            drinkScreen.display();
+            DrinkType drinkType = drinkScreen.getDrinkTypeSelection(scanner);  // Get the user's drink selection
+            if (drinkType == DrinkType.NONE) {
+                System.out.println("Must select valid type...");
+                addingDrink = !drinkScreen.returnToOrderScreen(scanner);
+                continue;
+            }
+            DrinkSize drinkSize = drinkScreen.getDrinkSizeSelection(scanner);
+            if (drinkSize == DrinkSize.NONE) {
+                System.out.println("Must select a size");
+                addingDrink = !drinkScreen.returnToOrderScreen(scanner);
+                continue;
+            }
+            Drink drink = new Drink(1, drinkSize, drinkType);
+            System.out.println(drink.getSize() + " " + drink.getType() + ": $"+ drink.getPrice());
+            addingDrink = false;
+        }
     }
 
     private void addChips() {
         // Logic to add chips
-        chipsScreen.display();
+        //chipsScreen.display();
         ChipType chipType = chipsScreen.getSelection(scanner);  // Get the user's chips selection
-        if (chipType != null) {
+        if (chipType != ChipType.NONE) {
             Chip chip = new Chip(chipType, 1);
             System.out.println(chip.getName() + " : $" + chip.getPrice());
         }
