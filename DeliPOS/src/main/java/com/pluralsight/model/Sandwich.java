@@ -76,18 +76,20 @@ public class Sandwich extends Product implements Priceable {
     }
     @Override
     public String getName() {
+        String top = "```````````````````````\n";
         String sandwichToasted = isToasted ? "*Toasted*\n" : "";
         String breadDescription = bread.getDescription() + "\n" + sandwichToasted;
         String toppingsDescription = "";
         if (toppings.isEmpty()) {
-            toppingsDescription += "No Toppings\n";
+            toppingsDescription += "\t- No toppings-\n";
         } else {
             for (Topping t : toppings) {
                 toppingsDescription += t + "\n";
             }
         }
+        String bottom = ",,,,,,,,,,,,,,,,,,,,,,,\n";
         //sandwichDescription += meats + "\n" + cheeses + "\n" + regularToppings + "\n";
-        return String.format("%s%sSandwich Price: $%.2f", breadDescription, toppingsDescription, getPrice());
+        return String.format("\n%s<--Total Sandwich Price: $%.2f-->\n%s%s%s", top, getPrice(), breadDescription, toppingsDescription, bottom);
     }
 
     @Override

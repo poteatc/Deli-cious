@@ -52,6 +52,6 @@ public class Bread implements Priceable {
     }
 
     public String getDescription() {
-        return String.format("%s %s: $%.2f", sandwichSize.getDescription(), breadType.getDescription(), getPrice());
+        return String.format("\t+ %s %s: $%.2f", sandwichSize.getDescription(), breadType.getDescription(), getPrice());
     }
 }

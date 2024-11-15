@@ -1,5 +1,6 @@
 package com.pluralsight.view.order;
 
+import com.pluralsight.controller.SandwichController;
 import com.pluralsight.model.*;
 import com.pluralsight.model.enums.*;
 import com.pluralsight.view.Screen;
@@ -7,9 +8,11 @@ import com.pluralsight.view.Screen;
 import java.util.Scanner;
 
 public class SandwichScreen implements Screen {
+    //SandwichController sandwichController = new SandwichController();
     BreadScreen breadScreen = new BreadScreen();
     ToppingScreen toppingScreen = new ToppingScreen();
-    Sandwich sandwich = new Sandwich();
+    Scanner scanner = new Scanner(System.in);
+    //Sandwich sandwich = new Sandwich();
 
     @Override
     public void display() {
@@ -33,10 +36,10 @@ public class SandwichScreen implements Screen {
                 """);
     }
 
-    public BreadType selectBreadType(Scanner scanner) {
+    public BreadType selectBreadType() {
         breadScreen.display();
-        BreadType breadType = breadScreen.getBreadTypeSelection(scanner);
-        sandwich.setBreadType(breadType);
+        BreadType breadType = breadScreen.getBreadTypeSelection(this.scanner);
+        new SandwichController().getSandwich().setBreadType(breadType);
         return breadType;
     }
 
@@ -54,7 +57,7 @@ public class SandwichScreen implements Screen {
         System.out.println("0) None");
     }
 
-    public SandwichSize selectSandwichSize(Scanner scanner) {
+    public SandwichSize selectSandwichSize() {
         int choice = -1;
         boolean selecting = true;
 
@@ -87,7 +90,7 @@ public class SandwichScreen implements Screen {
         return SandwichSize.NONE;
     }
 
-    public Topping addTopping(Scanner scanner) {
+    public Topping addTopping(Sandwich sandwich) {
         boolean isAddingToppings = true;
         Topping topping = null;
         while (isAddingToppings) {
@@ -135,10 +138,8 @@ public class SandwichScreen implements Screen {
         return topping;
     }
 
-    public Sandwich customize(Scanner scanner) {
-
+    public Sandwich customize(Sandwich sandwich) {
         int choice = -1;
-
         while (true) {
             display();
             System.out.print("Enter your choice: ");
@@ -148,10 +149,10 @@ public class SandwichScreen implements Screen {
                 choice = Integer.parseInt(input);
 
                 switch (choice) {
-                    case 1 -> sandwich.setBreadType(selectBreadType(scanner));
-                    case 2 -> sandwich.setSandwichSize(selectSandwichSize(scanner));
-                    case 3 -> addTopping(scanner);
-                    case 4 -> toggleToasted();
+                    case 1 -> sandwich.setBreadType(selectBreadType());
+                    case 2 -> sandwich.setSandwichSize(selectSandwichSize());
+                    case 3 -> addTopping(sandwich);
+                    case 4 -> toggleToasted(sandwich);
                     case 5 -> System.out.println(sandwich.getName());
                     case 6 -> {
                         return sandwich;
@@ -167,7 +168,7 @@ public class SandwichScreen implements Screen {
         }
     }
 
-    public void toggleToasted() {
+    public void toggleToasted(Sandwich sandwich) {
         if (sandwich.isToasted()) {
             System.out.println("\nSandwich is not toasted...");
             sandwich.setToasted(false);
@@ -181,7 +182,6 @@ public class SandwichScreen implements Screen {
         System.out.print("\nWould you like to return to Order Menu? Enter 'y' for yes: ");
         String choice = scanner.nextLine().trim().toLowerCase();
         if (choice.equalsIgnoreCase("y")) {
-            sandwich = new Sandwich();
             return true;
         } else {
             return false;

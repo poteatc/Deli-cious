@@ -47,7 +47,7 @@ public class Order implements Priceable {
         }
         s += String.format("""
         -----------------------
-        - Order price: $%.2f
+        >>> Order price: $%.2f <<<
         """, getPrice());
         //s += localDateTime.toString() + "\n";
         return s;
