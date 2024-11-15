@@ -27,6 +27,7 @@ public class AppController {
     private final CheckoutScreen checkoutScreen;
 
     // TODO: Put in OrderController class along with the OrderScreen
+    private final OrderController orderController;
     private final List<Order> orders;
 
 
@@ -39,6 +40,7 @@ public class AppController {
         chipsScreen = new ChipsScreen();
         drinkScreen = new DrinkScreen();
         checkoutScreen = new CheckoutScreen();
+        orderController = new OrderController();
         orders = new ArrayList<>();
     }
 

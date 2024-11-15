@@ -1,5 +1,11 @@
 package com.pluralsight.controller;
 
-public class SandwichController {
+import com.pluralsight.model.Sandwich;
 
+public class SandwichController {
+    Sandwich sandwich;
+
+    public SandwichController() {
+        this.sandwich = new Sandwich();
+    }
 }
