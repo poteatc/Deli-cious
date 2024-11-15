@@ -210,7 +210,7 @@ public class OrderController {
     // Handle the checkout process
     public void checkout() {
         if (orders.isEmpty()) {
-            System.out.println("Can't checkout. No orders confirmed...\n\n");
+            System.out.println("\nCan't checkout. No orders confirmed...\n\n");
             return;
         }
         boolean checkingOut = true;
@@ -220,7 +220,7 @@ public class OrderController {
             if (choice == 1) {
                 double paymentAmount = checkoutScreen.getPayment(scanner); // Process payment
                 if (paymentAmount < orders.stream().mapToDouble(Order::getPrice).sum()) {
-                    System.out.println("Not enough money to complete payment. Returning to checkout...\n");
+                    System.out.println("\nNot enough money to complete payment. Returning to checkout...\n");
                     continue;
                 }
                 if (paymentAmount != -99) {

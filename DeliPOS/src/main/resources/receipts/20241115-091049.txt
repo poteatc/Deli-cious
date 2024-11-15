@@ -1,0 +1,16 @@
+[1]
+
+```````````````````````
+--- Total Sandwich Price: $5.50 ---
+	+ 4" White bread: $5.50
+	- No toppings-
+,,,,,,,,,,,,,,,,,,,,,,,
+
+-----------------------
+>>> Order price: $5.50 <<<
+
+>>>Total price: $5.50 
+>>>Payment amount: $100.00
+>>>Change owed: $94.50
+
+

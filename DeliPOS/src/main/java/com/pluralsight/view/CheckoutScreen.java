@@ -12,14 +12,14 @@ public class CheckoutScreen implements Screen {
     @Override
     public void display() {
         System.out.println("""
-                Checkout:
                 ----------------
-                Review your order:
-                (Order details go here)
+                    Checkout:
+                ----------------
                 
                 Options:
                 1) Continue to Payment
                 0) Cancel
+                
                 """);
     }
 

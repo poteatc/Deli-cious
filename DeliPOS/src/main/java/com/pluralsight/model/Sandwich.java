@@ -51,24 +51,25 @@ public class Sandwich extends Product implements Priceable {
         toppings.remove(topping);
     }
 
-    // Method to get the cheeses in the sandwich (not yet implemented)
-    public String getCheeses() {
+    // Method to get the cheeses in the sandwich
+    public List<Topping> getCheeses() {
         List<Topping> cheeses = toppings.stream().filter(t -> t.getToppingType() == Topping.ToppingType.CHEESE).toList();
-        return "";
+        return cheeses;
     }
 
     // Method to get the meats in the sandwich
-    public String getMeats() {
+    public List<Topping> getMeats() {
         List<Topping> meats = toppings.stream().filter(t -> t.getToppingType() == Topping.ToppingType.MEAT).toList();
         double totalPriceOfMeats = meats.stream().mapToDouble(Topping::getPrice).sum();
         String s = "Meats: \n";
         for (Topping m : meats) {
             s += m;  // Appends each meat topping to the string
         }
-        return s;
+        System.out.println("Total Price of Meats on this Sandwich: " + totalPriceOfMeats);
+        return meats;
     }
 
-    // Method to get the regular toppings (not implemented fully)
+    // Method to get the regular toppings
     public String getRegularToppings() {
         return toppings.stream().filter(t -> t.getToppingType() == Topping.ToppingType.MEAT).toList().toString();
     }
