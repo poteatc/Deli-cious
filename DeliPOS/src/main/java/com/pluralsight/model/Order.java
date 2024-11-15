@@ -41,11 +41,15 @@ public class Order implements Priceable {
     public String toString() {
         String s = "";
         for (Product p : products) {
-            s += p.getName();
-            //s += String.format("%s: $%.2f\n", p.getName(), p.getPrice());
+            //s += String.format("%s\n");
+            s += p.getName() + "\n";
+            //s += String.format("%-10s: $%10.2f\n", p.ge(), p.getPrice());
         }
-        s += String.format("Total Order Price: %.2f\n", getPrice());
-        s += localDateTime.toString() + "\n";
+        s += String.format("""
+        -----------------------
+        - Order price: $%.2f
+        """, getPrice());
+        //s += localDateTime.toString() + "\n";
         return s;
     }
 

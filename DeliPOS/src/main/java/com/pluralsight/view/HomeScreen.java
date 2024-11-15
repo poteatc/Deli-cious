@@ -9,6 +9,9 @@ public class HomeScreen implements Screen {
                 Welcome to Caleb's DELI-cious subs!
                 -----------------------------------
                 1) New Order
+                2) View Orders
+                3) Remove Order
+                4) Checkout
                 0) Exit
                 """);
     }
@@ -17,20 +20,21 @@ public class HomeScreen implements Screen {
         int choice = -1;
 
         while (true) {
-            System.out.print("Enter your choice (1 or 0): ");
+            System.out.print("Enter your choice: ");
             String input = scanner.nextLine().trim();
 
             try {
                 choice = Integer.parseInt(input);
 
                 switch (choice) {
-                    case 1, 0 -> {
+                    case 1, 2, 3, 4, 0 -> {
+                        System.out.println();
                         return choice; // Valid choice, exit the loop by returning choice
                     }
-                    default -> System.out.println("Invalid option. Please enter 1 for New Order or 0 to Exit.");
+                    default -> System.out.println("Invalid option. Please enter 1, 2, 3, 4, or 0 to Exit...");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a number (1 or 0).");
+                System.out.println("Invalid input. Please enter a number (0 - 4).");
             }
         }
     }

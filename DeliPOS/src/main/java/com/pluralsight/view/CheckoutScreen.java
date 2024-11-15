@@ -17,8 +17,8 @@ public class CheckoutScreen implements Screen {
                 (Order details go here)
                 
                 Options:
-                1) Confirm Order
-                0) Cancel Order
+                1) Continue to Payment
+                0) Cancel
                 """);
     }
 

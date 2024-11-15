@@ -17,7 +17,8 @@ public class Drink extends Product {
 
     @Override
     public String getName() {
-        return String.format("+ %s %s %s: $%.2f", getQuantity(), getSize(), type.getDescription(), getPrice());
+        //return String.format("+%s %s %s: $%.2f", getQuantity(), getSize(), type.getDescription(), getPrice());
+        return String.format("+ %s %s: $%.2f", getSize(), type.getDescription(), getPrice());
     }
 
     @Override

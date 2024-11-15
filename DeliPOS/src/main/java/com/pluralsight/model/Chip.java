@@ -15,7 +15,8 @@ public class Chip extends Product {
 
     @Override
     public String getName() {
-        return chipType.getDescription();
+        //return String.format("+ %s %s: $%.2f", getQuantity(), chipType.getDescription(), getPrice());
+        return String.format("+ %s: $%.2f", chipType.getDescription(), getPrice());
     }
 
     @Override
