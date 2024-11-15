@@ -1,6 +1,5 @@
 package com.pluralsight.view.order;
 
-import com.pluralsight.controller.SandwichController;
 import com.pluralsight.model.*;
 import com.pluralsight.model.enums.*;
 import com.pluralsight.view.Screen;
@@ -37,7 +36,6 @@ public class SandwichScreen implements Screen {
     public BreadType selectBreadType() {
         breadScreen.display();
         BreadType breadType = breadScreen.getBreadTypeSelection(this.scanner);
-        new SandwichController().getSandwich().setBreadType(breadType);
         return breadType;
     }
 

@@ -1,0 +1,31 @@
+[1]
+
+```````````````````````
+--- Total Sandwich Price: $5.50 ---
+	+ 4" White bread: $5.50
+	- No toppings-
+,,,,,,,,,,,,,,,,,,,,,,,
+
+
+```````````````````````
+--- Total Sandwich Price: $11.65 ---
+	+ 12" White bread: $8.50
+*Toasted*
+	+ Provolone Cheese with extra costs: $3.15
+,,,,,,,,,,,,,,,,,,,,,,,
+
++ Small Tea: $2.00
++ Sun Chips: $1.50
+-----------------------
+>>> Order price: $20.65 <<<
+
+[2]
++ Medium Water: $2.50
+-----------------------
+>>> Order price: $2.50 <<<
+
+>>>Total price: $23.15 
+>>>Payment amount: $100.00
+>>>Change owed: $76.85
+
+
