@@ -8,11 +8,9 @@ import com.pluralsight.view.Screen;
 import java.util.Scanner;
 
 public class SandwichScreen implements Screen {
-    //SandwichController sandwichController = new SandwichController();
     BreadScreen breadScreen = new BreadScreen();
     ToppingScreen toppingScreen = new ToppingScreen();
     Scanner scanner = new Scanner(System.in);
-    //Sandwich sandwich = new Sandwich();
 
     @Override
     public void display() {
@@ -58,16 +56,14 @@ public class SandwichScreen implements Screen {
     }
 
     public SandwichSize selectSandwichSize() {
-        int choice = -1;
-        boolean selecting = true;
 
-        while (selecting) {
+        while (true) {
             showSandwichSizeOptions();
             System.out.print("Enter your choice: ");
             String input = scanner.nextLine().trim();
 
             try {
-                choice = Integer.parseInt(input);
+                int choice = Integer.parseInt(input);
                 SandwichSize selectedSize = SandwichSize.fromChoice(choice);
                 if (selectedSize == null) {
                     System.out.println("\nInvalid option!!! Please enter a number from 0 to 3.\n");
@@ -87,12 +83,11 @@ public class SandwichScreen implements Screen {
                 System.out.println("\nInvalid input. Please enter a valid number.\n");
             }
         }
-        return SandwichSize.NONE;
     }
 
-    public Topping addTopping(Sandwich sandwich) {
+    public void addTopping(Sandwich sandwich) {
         boolean isAddingToppings = true;
-        Topping topping = null;
+        Topping topping;
         while (isAddingToppings) {
             toppingScreen.display();
             String input = scanner.nextLine().trim();
@@ -127,26 +122,22 @@ public class SandwichScreen implements Screen {
                             isAddingToppings = false;
                         }
                     }
-                    case 0 -> {
-                        isAddingToppings = false;
-                    }
+                    case 0 -> isAddingToppings = false;
                 }
             } catch (NumberFormatException e) {
                 System.out.println("\nInvalid input. Please enter a valid number.\n");
             }
         }
-        return topping;
     }
 
     public Sandwich customize(Sandwich sandwich) {
-        int choice = -1;
         while (true) {
             display();
             System.out.print("Enter your choice: ");
             String input = scanner.nextLine().trim();
 
             try {
-                choice = Integer.parseInt(input);
+                int choice = Integer.parseInt(input);
 
                 switch (choice) {
                     case 1 -> sandwich.setBreadType(selectBreadType());
@@ -181,10 +172,6 @@ public class SandwichScreen implements Screen {
     public boolean returnToOrderScreen(Scanner scanner) {
         System.out.print("\nWould you like to return to Order Menu? Enter 'y' for yes: ");
         String choice = scanner.nextLine().trim().toLowerCase();
-        if (choice.equalsIgnoreCase("y")) {
-            return true;
-        } else {
-            return false;
-        }
+        return choice.equalsIgnoreCase("y");
     }
 }

@@ -23,9 +23,9 @@ public abstract class Topping implements Priceable {
         }
     }
 
-    private SandwichSize sandwichSize;
-    private ToppingType toppingType;
-    private boolean hasExtra;
+    private final SandwichSize sandwichSize;
+    private final ToppingType toppingType;
+    private final boolean hasExtra;
 
     public Topping(SandwichSize sandwichSize, ToppingType toppingType, boolean hasExtra) {
         this.sandwichSize = sandwichSize;
@@ -75,10 +75,6 @@ public abstract class Topping implements Priceable {
 
     public ToppingType getToppingType() {
         return toppingType;
-    }
-
-    public SandwichSize getSandwichSize() {
-        return sandwichSize;
     }
 
 

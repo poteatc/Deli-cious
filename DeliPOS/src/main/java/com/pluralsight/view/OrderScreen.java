@@ -17,18 +17,16 @@ public class OrderScreen implements Screen {
                 4) View Order
                 5) Confirm Order
                 0) Cancel Order
-                """);
+               """);
     }
 
     public int getSelection(Scanner scanner) {
-        int choice = -1;
-
         while (true) {
             System.out.print("Enter your choice: ");
             String input = scanner.nextLine().trim();
 
             try {
-                choice = Integer.parseInt(input);
+                int choice = Integer.parseInt(input);
 
                 switch (choice) {
                     case 1, 2, 3, 4, 5, 0 -> {

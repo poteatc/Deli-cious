@@ -1,6 +1,5 @@
 package com.pluralsight.view.order;
 
-import com.pluralsight.model.RegularTopping;
 import com.pluralsight.model.enums.CheeseType;
 import com.pluralsight.model.enums.MeatType;
 import com.pluralsight.model.enums.RegularToppingType;
@@ -38,8 +37,7 @@ public class ToppingScreen implements Screen {
     }
 
     public MeatType selectMeat(Scanner scanner) {
-        boolean choosingMeatType = true;
-        while (choosingMeatType) {
+        while (true) {
             showMeatTypeOptions();
             System.out.print("Enter your choice: ");
             String input = scanner.nextLine().trim();
@@ -61,7 +59,6 @@ public class ToppingScreen implements Screen {
                 System.out.println("\nInvalid input. Please enter a valid number.\n");
             }
         }
-        return MeatType.NONE;
     }
 
     private void showCheeseTypeOptions() {
@@ -79,8 +76,7 @@ public class ToppingScreen implements Screen {
     }
 
     public CheeseType selectCheese(Scanner scanner) {
-        boolean choosing = true;
-        while (choosing) {
+        while (true) {
             showCheeseTypeOptions();
             System.out.print("Enter your choice: ");
             String input = scanner.nextLine().trim();
@@ -102,14 +98,12 @@ public class ToppingScreen implements Screen {
                 System.out.println("\nInvalid input. Please enter a valid number.\n");
             }
         }
-        return CheeseType.NONE;
     }
 
     public boolean selectHasExtra(Scanner scanner) {
         System.out.print("\nWould you like extra? Enter 'y' for yes: ");
         String input = scanner.nextLine().toLowerCase().trim();
-        boolean wantsExtra = input.equalsIgnoreCase("y");
-        return wantsExtra;
+        return input.equalsIgnoreCase("y");
     }
 
     private void showRegularToppingTypeOptions() {

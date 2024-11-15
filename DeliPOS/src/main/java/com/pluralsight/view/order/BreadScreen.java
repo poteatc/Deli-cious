@@ -1,11 +1,8 @@
 package com.pluralsight.view.order;
 
-import com.pluralsight.model.Drink;
-import com.pluralsight.model.enums.BreadType;
-import com.pluralsight.model.enums.ChipType;
-import com.pluralsight.model.enums.DrinkType;
-import com.pluralsight.view.Screen;
 
+import com.pluralsight.model.enums.BreadType;
+import com.pluralsight.view.Screen;
 import java.util.Scanner;
 
 public class BreadScreen implements Screen {
@@ -37,16 +34,13 @@ public class BreadScreen implements Screen {
     }
 
     public BreadType getBreadTypeSelection(Scanner scanner) {
-        int choice = -1;
-        boolean selecting = true;
-
-        while (selecting) {
+        while (true) {
             showBreadTypeOptions();
             System.out.print("\nEnter your choice: ");
             String input = scanner.nextLine().trim();
 
             try {
-                choice = Integer.parseInt(input);
+                int choice = Integer.parseInt(input);
                 BreadType selectedBreadType = BreadType.fromChoice(choice);
                 if (selectedBreadType == null) {
                     System.out.println("\nInvalid option!!! Please enter a number from 0 to " + BreadType.values().length + ".\n");
@@ -66,6 +60,5 @@ public class BreadScreen implements Screen {
                 System.out.println("\nInvalid input. Please enter a valid number.\n");
             }
         }
-        return null;
     }
 }

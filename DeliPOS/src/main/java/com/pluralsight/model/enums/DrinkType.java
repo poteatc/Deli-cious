@@ -1,7 +1,5 @@
 package com.pluralsight.model.enums;
 
-import com.pluralsight.model.Drink;
-
 public enum DrinkType {
     NONE("None"),
     TEA("Tea"),

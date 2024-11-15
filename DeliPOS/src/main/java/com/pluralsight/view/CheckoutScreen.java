@@ -3,12 +3,10 @@ package com.pluralsight.view;
 import com.pluralsight.model.Order;
 import com.pluralsight.model.Receipt;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class CheckoutScreen implements Screen {
-    List<Order> orders = new ArrayList<>();
     @Override
     public void display() {
         System.out.println("""
@@ -24,14 +22,12 @@ public class CheckoutScreen implements Screen {
     }
 
     public int getSelection(Scanner scanner) {
-        int choice = -1;
-
         while (true) {
             System.out.print("Enter your choice: ");
             String input = scanner.nextLine().trim();
 
             try {
-                choice = Integer.parseInt(input);
+                int choice = Integer.parseInt(input);
 
                 switch (choice) {
                     case 1, 0 -> {
@@ -46,16 +42,14 @@ public class CheckoutScreen implements Screen {
     }
 
     public double getPayment(Scanner scanner) {
-        double paymentAmount = 0.0;
-        boolean paying = true;
-        while (paying) {
+        while (true) {
             System.out.print("Enter the amount of your payment or 'x' to cancel: $");
             String input = scanner.nextLine().trim();
             if (input.equalsIgnoreCase("x")) {
                 return -99;
             }
             try {
-                paymentAmount = Double.parseDouble(input);
+                double paymentAmount = Double.parseDouble(input);
                 if (paymentAmount <= 0) {
                     System.out.println("\nInvalid input. Please enter a positive amount...\n");
                 } else {
@@ -65,7 +59,6 @@ public class CheckoutScreen implements Screen {
                 System.out.println("\nInvalid input. Please enter a number value for the payment (Ex. $100, $25.0)...\n");
             }
         }
-        return -99;
     }
 
     public boolean confirmPurchase(Scanner scanner) {

@@ -35,14 +35,6 @@ public class OrderController {
         scanner = new Scanner(System.in);
     }
 
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void addOrder(Order o) {
-        orders.add(o);
-    }
-
     public void startNewOrder() {
         boolean orderInProgress = true;
 
@@ -91,7 +83,9 @@ public class OrderController {
             }
             System.out.printf("""
                     ~~~~~~~~~~~~~~~~~~~~~~
-                    Total price: $%.2f\n\n
+                    Total price: $%.2f
+                    
+                    
                     """, order.getPrice());
         }
         //System.out.println(order);
@@ -124,7 +118,10 @@ public class OrderController {
             System.out.printf("""
         ~~~~~~~~~~~~~~~~~~~~~~
         ~~~~~~~~~~~~~~~~~~~~~~
-        >>>Total price: $%.2f\n\n\n
+        >>> Total price: $%.2f <<<
+        
+        
+        
         """, totalPrice);
         }
     }
@@ -135,12 +132,11 @@ public class OrderController {
         } else {
             viewOrders();
             System.out.print("Select an order # to remove: ");
-            int choice = -1;
 
             String input = scanner.nextLine().trim();
 
             try {
-                choice = Integer.parseInt(input);
+                int choice = Integer.parseInt(input);
                 if (choice > 0 && choice <= orders.size()) {
                     System.out.println("\nOrder #" + choice + " successfully removed.\n");
                     orders.remove(choice - 1);
@@ -201,7 +197,7 @@ public class OrderController {
         }
         boolean checkingOut = true;
         while (checkingOut) {
-            // Logic to checkout and display order details
+            // Logic to check out and display order details
             checkoutScreen.display();
             int choice = checkoutScreen.getSelection(scanner);  // Get the user's checkout confirmation or cancellation
             if (choice == 1) {
@@ -214,7 +210,7 @@ public class OrderController {
                     checkingOut = checkoutScreen.confirmPurchase(scanner);
                     if (checkingOut) {
                         checkoutScreen.printReceipt(orders, paymentAmount);
-                        orders.removeAll(orders);
+                        orders.removeAll(orders.stream().toList());
                         checkingOut = false;
                     }
                 }

@@ -4,7 +4,7 @@ import com.pluralsight.model.enums.MeatType;
 import com.pluralsight.model.enums.SandwichSize;
 
 public class Meat extends Topping {
-    private MeatType meatType;
+    private final MeatType meatType;
 
     public Meat(SandwichSize sandwichSize, MeatType meatType, boolean hasExtra) {
         super(sandwichSize, Topping.ToppingType.MEAT, hasExtra);

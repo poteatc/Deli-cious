@@ -31,15 +31,13 @@ public class HomeScreen implements Screen {
     }
 
     public int getSelection(Scanner scanner) {
-        int choice = -1;
-
         while (true) {
             showOptions();
             System.out.print("Enter your choice: ");
             String input = scanner.nextLine().trim();
 
             try {
-                choice = Integer.parseInt(input);
+                int choice = Integer.parseInt(input);
 
                 switch (choice) {
                     case 1, 2, 3, 4, 0 -> {

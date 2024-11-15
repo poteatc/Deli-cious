@@ -5,7 +5,7 @@ import com.pluralsight.model.enums.SandwichSize;
 
 public class RegularTopping extends Topping {
 
-    private RegularToppingType regularToppingType;
+    private final RegularToppingType regularToppingType;
 
     public RegularTopping(SandwichSize sandwichSize, RegularToppingType regularToppingType, boolean hasExtra) {
         super(sandwichSize, ToppingType.REGULAR, hasExtra);

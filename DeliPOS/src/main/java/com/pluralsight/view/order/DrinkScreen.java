@@ -1,10 +1,8 @@
 package com.pluralsight.view.order;
 
-import com.pluralsight.model.Drink;
 import com.pluralsight.model.enums.DrinkSize;
 import com.pluralsight.model.enums.DrinkType;
 import com.pluralsight.view.Screen;
-
 import java.util.Scanner;
 
 public class DrinkScreen implements Screen {
@@ -48,16 +46,13 @@ public class DrinkScreen implements Screen {
     }
 
     public DrinkType getDrinkTypeSelection(Scanner scanner) {
-        int choice = -1;
-        boolean selectingDrinkType = true;
-
-        while (selectingDrinkType) {
+        while (true) {
             showDrinkTypeOptions();
             System.out.print("Enter your choice: ");
             String input = scanner.nextLine().trim();
 
             try {
-                choice = Integer.parseInt(input);
+                int choice = Integer.parseInt(input);
                 DrinkType selectedDrinkType = DrinkType.fromChoice(choice);
                 if (selectedDrinkType == null) {
                     System.out.println("\nInvalid option!!! Please enter a number from 0 to 3." + DrinkType.values().length + "\n");
@@ -73,20 +68,16 @@ public class DrinkScreen implements Screen {
                 System.out.println("\nInvalid input. Please enter a valid number.\n");
             }
         }
-        return DrinkType.NONE;
     }
 
     public DrinkSize getDrinkSizeSelection(Scanner scanner) {
-        int choice = -1;
-        boolean selecting = true;
-
-        while (selecting) {
+        while (true) {
             showDrinkSizeOptions();
             System.out.print("Enter your choice: ");
             String input = scanner.nextLine().trim();
 
             try {
-                choice = Integer.parseInt(input);
+                int choice = Integer.parseInt(input);
                 DrinkSize selectedDrinkSize = DrinkSize.fromChoice(choice);
                 if (selectedDrinkSize == null) {
                     System.out.println("\nInvalid option!!! Please enter a number from 0 to " + DrinkSize.values().length + "\n.");
@@ -102,17 +93,12 @@ public class DrinkScreen implements Screen {
                 System.out.println("\nInvalid input. Please enter a valid number.\n");
             }
         }
-        return DrinkSize.NONE;
     }
 
     public boolean returnToOrderScreen(Scanner scanner) {
         System.out.println("\nWould you like to return to Order Menu? Enter 'y' for yes\n");
         String choice = scanner.nextLine().trim().toLowerCase();
-        if (choice.equalsIgnoreCase("y")) {
-            return true;
-        } else {
-            return false;
-        }
+        return (choice.equalsIgnoreCase("y"));
     }
 
 }

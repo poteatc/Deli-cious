@@ -1,11 +1,10 @@
 package com.pluralsight.model;
 
 import com.pluralsight.model.enums.CheeseType;
-import com.pluralsight.model.enums.MeatType;
 import com.pluralsight.model.enums.SandwichSize;
 
 public class Cheese extends Topping {
-    private CheeseType cheeseType;
+    private final CheeseType cheeseType;
 
     public Cheese(SandwichSize sandwichSize, CheeseType cheeseType, boolean hasExtra) {
         super(sandwichSize, Topping.ToppingType.CHEESE, hasExtra);

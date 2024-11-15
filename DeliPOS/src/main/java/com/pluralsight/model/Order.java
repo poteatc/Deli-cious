@@ -1,18 +1,14 @@
 package com.pluralsight.model;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Order implements Priceable {
-    private List<Product> products;
-    private LocalDateTime localDateTime;
+    private final List<Product> products;
+
     // Constructor initializes the products list
     public Order() {
         this.products = new ArrayList<>();
-        this.localDateTime = LocalDateTime.now();
     }
 
     // Method to add a product to the order
@@ -41,15 +37,12 @@ public class Order implements Priceable {
     public String toString() {
         String s = "";
         for (Product p : products) {
-            //s += String.format("%s\n");
             s += p.getName() + "\n";
-            //s += String.format("%-10s: $%10.2f\n", p.ge(), p.getPrice());
         }
         s += String.format("""
         -----------------------
         >>> Order price: $%.2f <<<
         """, getPrice());
-        //s += localDateTime.toString() + "\n";
         return s;
     }
 

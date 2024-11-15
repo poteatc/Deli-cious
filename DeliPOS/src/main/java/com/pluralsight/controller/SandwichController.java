@@ -26,19 +26,5 @@ public class SandwichController {
         this.sandwich = sandwich;
     }
 
-    public void startNewSandwich() {
-        sandwich = new Sandwich();
-        boolean customizingSandwich = true;
-        while (customizingSandwich) {
-            // Logic to add a sandwich
-            sandwich = sandwichScreen.customize(sandwich);
-            if (sandwich == null) {
-                customizingSandwich = !sandwichScreen.returnToOrderScreen(scanner);
-            } else {
-                //.addProduct(sandwich);
-                System.out.println("\nCustom sandwich successfully added to order.\n");
-                customizingSandwich = false;
-            }
-        }
-    }
+
 }

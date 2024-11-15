@@ -18,11 +18,6 @@ public class Bread implements Priceable {
         this.sandwichSize = SandwichSize.SMALL;
     }
 
-    // Getter for BreadType
-    public BreadType getBreadType() {
-        return breadType;
-    }
-
     // Setter for BreadType
     public void setBreadType(BreadType breadType) {
         this.breadType = breadType;

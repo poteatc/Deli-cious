@@ -11,8 +11,8 @@ import java.util.List;
 public class Receipt {
     private final double paymentAmount;
     private final double totalPrice;
-    private List<Order> orders;
-    private LocalDateTime localDateTime;
+    private final List<Order> orders;
+    private final LocalDateTime localDateTime;
 
     public Receipt() {
         this.orders = new ArrayList<>();
@@ -23,7 +23,7 @@ public class Receipt {
 
     public Receipt(List<Order> orders, double paymentAmount) {
         this.orders = orders;
-        this.localDateTime = localDateTime.now();
+        this.localDateTime = LocalDateTime.now();
         this.paymentAmount = paymentAmount;
         this.totalPrice = orders.stream().mapToDouble(Order::getPrice).sum();
     }

@@ -5,9 +5,8 @@ import com.pluralsight.model.enums.DrinkType;
 
 public class Drink extends Product {
 
-
-    private DrinkSize size;
-    private DrinkType type;
+    private final DrinkSize size;
+    private final DrinkType type;
 
     public Drink(int quantity, DrinkSize size, DrinkType type) {
         super(quantity);

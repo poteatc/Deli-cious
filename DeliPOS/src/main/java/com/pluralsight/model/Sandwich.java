@@ -2,14 +2,13 @@ package com.pluralsight.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.pluralsight.model.enums.BreadType;
 import com.pluralsight.model.enums.SandwichSize;
 
 public class Sandwich extends Product implements Priceable {
-    private Bread bread;  // Bread object with BreadType and Size
-    private List<Topping> toppings;  // List of Topping objects (regular or premium)
+    private final Bread bread;  // Bread object with BreadType and Size
+    private final List<Topping> toppings;  // List of Topping objects (regular or premium)
     private SandwichSize sandwichSize;  // Size enum for sandwich (SMALL, MEDIUM, LARGE)
     private boolean isToasted;
 
@@ -32,14 +31,6 @@ public class Sandwich extends Product implements Priceable {
 
     public void setBreadType(BreadType breadType) {
         this.bread.setBreadType(breadType);
-    }
-
-    public BreadType getBreadType() {
-        return bread.getBreadType();
-    }
-
-    public void addBread(Bread bread) {
-        this.bread = bread;
     }
 
     public void setSandwichSize(SandwichSize sandwichSize) {
@@ -88,8 +79,7 @@ public class Sandwich extends Product implements Priceable {
             }
         }
         String bottom = ",,,,,,,,,,,,,,,,,,,,,,,\n";
-        //sandwichDescription += meats + "\n" + cheeses + "\n" + regularToppings + "\n";
-        return String.format("\n%s<--Total Sandwich Price: $%.2f-->\n%s%s%s", top, getPrice(), breadDescription, toppingsDescription, bottom);
+        return String.format("\n%s--- Total Sandwich Price: $%.2f ---\n%s%s%s", top, getPrice(), breadDescription, toppingsDescription, bottom);
     }
 
     @Override
