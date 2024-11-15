@@ -1,0 +1,10 @@
++ Medium Water: $2.50
++ Doritos: $1.50
+-----------------------
+- Order price: $4.00
+
++ Lays: $1.50
++ Doritos: $1.50
+-----------------------
+- Order price: $3.00
+

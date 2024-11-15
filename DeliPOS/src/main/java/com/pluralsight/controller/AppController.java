@@ -71,7 +71,7 @@ public class AppController {
 
     private void removeOrder() {
         if (orders.isEmpty()) {
-            System.out.println("No orders confirmed...");
+            System.out.println("Nothing to remove. No orders confirmed...\n\n");
         } else {
             viewOrders();
             System.out.print("Select an order # to remove: ");
@@ -82,14 +82,14 @@ public class AppController {
             try {
                 choice = Integer.parseInt(input);
                 if (choice > 0 && choice <= orders.size()) {
-                    System.out.println("Order #" + choice + " successfully removed.");
+                    System.out.println("Order #" + choice + " successfully removed.\n");
                     orders.remove(choice - 1);
                 } else {
                     System.out.println("\nInvalid Order #...");
                 }
 
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a number...");
+                System.out.println("Invalid input. Please enter a number...\n");
             }
         }
     }
@@ -110,7 +110,7 @@ public class AppController {
             System.out.printf("""
         ~~~~~~~~~~~~~~~~~~~~~~
         ~~~~~~~~~~~~~~~~~~~~~~
-        Total price: $%.2f\n\n\n
+        >>>Total price: $%.2f\n\n\n
         """, totalPrice);
         }
     }
@@ -221,9 +221,29 @@ public class AppController {
     }
 
     private void checkout() {
-        // Logic to checkout and display order details
-        checkoutScreen.display();
-        checkoutScreen.getSelection(scanner);  // Get the user's checkout confirmation or cancellation
+        //double totalPrice = orders.stream().mapToDouble(Order::getPrice).sum();
+        if (orders.isEmpty()) {
+            System.out.println("Can't checkout. No orders confirmed...\n\n");
+            return;
+        }
+        boolean checkingOut = true;
+        while (checkingOut) {
+            // Logic to checkout and display order details
+            checkoutScreen.display();
+            int choice = checkoutScreen.getSelection(scanner);  // Get the user's checkout confirmation or cancellation
+            if (choice == 1) {
+                double paymentAmount = checkoutScreen.getPayment(scanner);
+                if (!(paymentAmount == -99)) {
+                    checkingOut = checkoutScreen.confirmPurchase(scanner);
+                    if (checkingOut) {
+                        checkoutScreen.printReceipt(orders, paymentAmount);
+                        orders.removeAll(orders);
+                        checkingOut = false;
+                    }
+                }
+            }
+        }
+
     }
 
 }
