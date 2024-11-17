@@ -8,6 +8,7 @@ import com.pluralsight.model.enums.SandwichSize;
 
 public class Sandwich extends Product implements Priceable {
     private final Bread bread;  // Bread object with BreadType and Size
+
     private final List<Topping> toppings;  // List of Topping objects (regular or premium)
     private SandwichSize sandwichSize;  // Size enum for sandwich (SMALL, MEDIUM, LARGE)
     private boolean isToasted;  // Boolean indicating if the sandwich is toasted
@@ -122,5 +123,10 @@ public class Sandwich extends Product implements Priceable {
     // Setter for toasting the sandwich
     public void setToasted(boolean toasted) {
         isToasted = toasted;
+    }
+
+    // Gets all toppings
+    public List<Topping> getToppings() {
+        return toppings;
     }
 }

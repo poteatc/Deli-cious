@@ -1,0 +1,16 @@
+[1]
+
+```````````````````````
+--- Total Sandwich Price: $6.25 ---
+	+ 4" White bread: $5.50
+	+ Cheddar Cheese costs: $0.75
+,,,,,,,,,,,,,,,,,,,,,,,
+
+-----------------------
+>>> Order price: $6.25 <<<
+
+>>>Total price: $6.25 
+>>>Payment amount: $1000.00
+>>>Change owed: $993.75
+
+

@@ -28,9 +28,10 @@ public class SandwichScreen implements Screen {
                 1) Select Bread
                 2) Select Size
                 3) Add Topping
-                4) Toast
-                5) Review
-                6) Add to Order
+                4) Remove Topping
+                5) Toast
+                6) Review
+                7) Add to Order
                 0) Cancel
                 """);
     }
@@ -148,21 +149,70 @@ public class SandwichScreen implements Screen {
                     case 1 -> sandwich.setBreadType(selectBreadType());  // Set bread type
                     case 2 -> sandwich.setSandwichSize(selectSandwichSize());  // Set sandwich size
                     case 3 -> addTopping(sandwich);  // Add topping
-                    case 4 -> toggleToasted(sandwich);  // Toast the sandwich
-                    case 5 -> System.out.println(sandwich.getName());  // Review the sandwich
-                    case 6 -> {
+                    case 4 -> removeTopping(sandwich);  // Remove topping
+                    case 5 -> toggleToasted(sandwich);  // Toast the sandwich
+                    case 6 -> System.out.println(sandwich.getName());  // Review the sandwich
+                    case 7 -> {
                         return sandwich;  // Add the sandwich to the order and return
                     }
                     case 0 -> {
                         return null;  // Cancel customization and return null
                     }
-                    default -> System.out.println("\nInvalid option. Please enter a number from 0 to 6.\n");  // Handle invalid input
+                    default -> System.out.println("\nInvalid option. Please enter a number from 0 to 7.\n");  // Handle invalid input
                 }
             } catch (NumberFormatException e) {
                 System.out.println("\nInvalid input. Please enter a valid number.\n");  // Handle non-numeric input
             }
         }
     }
+
+    // Remove a topping from the sandwich
+    public void removeTopping(Sandwich sandwich) {
+        // Display the current toppings
+        System.out.println("Current toppings on your sandwich:");
+        // Check if there are toppings to display
+        if (sandwich.getToppings().isEmpty()) {
+            System.out.println("No toppings selected yet.");
+            return;
+        }
+
+        // Display toppings with their corresponding index
+        for (int i = 0; i < sandwich.getToppings().size(); i++) {
+            Topping topping = sandwich.getToppings().get(i);
+            System.out.println((i + 1) + ") " + topping);  // List toppings with index starting from 1
+        }
+        System.out.println("0) Cancel (Do not remove any topping)");
+
+        // Ask user to select a topping to remove
+        boolean isRemovingToppings = true;
+        while (isRemovingToppings) {
+            System.out.print("Enter the number of the topping to remove: ");
+            String input = scanner.nextLine().trim();  // Get input from user
+
+            try {
+                int choice = Integer.parseInt(input);  // Parse the user's choice
+                if (choice == 0) {
+                    System.out.println("No topping removed.");
+                    return;  // Exit if the user chooses to cancel
+                }
+
+                if (choice < 1 || choice > sandwich.getToppings().size()) {
+                    System.out.println("\nInvalid option! Please enter a valid number between 1 and " + sandwich.getToppings().size() + ".");
+                    continue;  // If the choice is out of bounds, prompt again
+                }
+
+                // Remove the selected topping (adjust for zero-indexed list)
+                Topping toppingToRemove = sandwich.getToppings().get(choice - 1);
+                sandwich.removeTopping(toppingToRemove);  // Remove the topping from the sandwich
+                System.out.println(toppingToRemove + " removed from your sandwich.");
+                return;  // Exit after removal
+
+            } catch (NumberFormatException e) {
+                System.out.println("\nInvalid input. Please enter a valid number.\n");  // Handle non-numeric input
+            }
+        }
+    }
+
 
     // Toggle whether the sandwich is toasted or not
     public void toggleToasted(Sandwich sandwich) {
