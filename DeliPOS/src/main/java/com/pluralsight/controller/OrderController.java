@@ -231,6 +231,8 @@ public class OrderController {
                         checkingOut = false;
                     }
                 }
+            } else {
+                checkingOut = false;
             }
         }
     }

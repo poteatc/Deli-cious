@@ -1,0 +1,10 @@
+[1]
++ Medium Water: $2.50
+-----------------------
+>>> Order price: $2.50 <<<
+
+>>>Total price: $2.50 
+>>>Payment amount: $1010.00
+>>>Change owed: $1007.50
+
+
