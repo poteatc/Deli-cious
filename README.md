@@ -2,6 +2,9 @@
 
 This is a console-based application designed for managing sandwich orders at a deli. Customers can customize sandwiches, add toppings, and go through the checkout process. The application is structured following the **Model-View-Controller (MVC)** architecture to separate concerns and ensure modularity and maintainability.
 
+## Use the **AppController** class to run the appilcation from the console
+## Use the **DeliApp** class in the `gui` package to preview a basic graphical interface to enter orders (currently does not print receipt to file)
+
 ## Project Overview
 
 The application is structured into three core components to promote separation of concerns:
